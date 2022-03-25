@@ -1,4 +1,4 @@
 
-public class CenterPile {
+public class CenterPile extends Deck{
 
 }

@@ -9,4 +9,7 @@ abstract class Deck {
 	abstract void remove() {
 		
 	}
+	abstract int length() {
+		
+	}
 }
