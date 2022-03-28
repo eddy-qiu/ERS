@@ -1,7 +1,7 @@
 import java.until.*;
 
 public class PlayerPile extends Deck{
-	ArrayList<Card> Cards = new ArrayList<Cards>;
+	ArrayList<Card> Cards = new ArrayList<Card>;
 	public Card get(int index) {
 		Cards.get(index);
 	}
