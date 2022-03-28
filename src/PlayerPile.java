@@ -11,4 +11,7 @@ public class PlayerPile extends Deck{
 	public void remove(int index) {
 		Cards.remove(index);
 	}
+	public int length() {
+		return Cards.size();
+	}
 }

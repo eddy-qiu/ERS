@@ -50,4 +50,7 @@ public class CenterPile extends Deck{
 			return 0;
 		}
 	}
+	public int length() {
+		return Cards.size();
+	}
 }
