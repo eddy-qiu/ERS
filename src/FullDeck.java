@@ -4,8 +4,8 @@ public class FullDeck extends Deck {
 	private ArrayList<Card> Cards = new ArrayList<Card>();
 	FullDeck() throws Exception{
 		//adds all 52 cards to the deck
-		for(int i=1;i<13;i++) {
-			for(int j=1;j>4;j++) {
+		for(int i=1;i<14;i++) {
+			for(int j=1;j<5;j++) {
 				Cards.add(new Card(i));
 			}
 		}
@@ -23,9 +23,8 @@ public class FullDeck extends Deck {
 		Collections.shuffle(Cards);
 	}
 	@Override
-	Card get() {
-		// TODO Auto-generated method stub
-		return null;
+	public Card get(int index) {
+		return Cards.get(index);
 	}
 	@Override
 	void add() {
