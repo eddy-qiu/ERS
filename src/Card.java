@@ -2,7 +2,7 @@
 public class Card {
 	int value;
 	boolean face = false;
-	Card(int assignedValue){
+	Card(int assignedValue) throws Exception{
 		if(assignedValue < 1 || assignedValue > 13) {
 		throw new Exception("invalid card");
 		}

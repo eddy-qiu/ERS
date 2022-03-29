@@ -1,10 +1,10 @@
 import java.util.*;
 
 public class CenterPile extends Deck{
-	ArrayList<Card> Cards = new ArrayList<Card>;
+	ArrayList<Card> Cards = new ArrayList<Card>();
 	private int faceRemaining = 0;
 	public Card get(int index) {
-		Cards.get(index);
+		return Cards.get(index);
 	}
 	public void add(Card card) {
 		Cards.add(card);
@@ -16,10 +16,10 @@ public class CenterPile extends Deck{
 		if(Cards.get(Cards.size()).getValue() == Cards.get(Cards.size()-1).getValue()) {
 			return true;
 		}
-		if(Cards.get(Cards.size()).getValue() == Cards.get(size()-2).getValue()) {
+		if(Cards.get(Cards.size()).getValue() == Cards.get(Cards.size()-2).getValue()) {
 			return true;
 		}
-		if((Cards.get(Cards.size()).getValue() == 12 && Cards.get(Cards.size()-1).getValue == 13) || (Cards.get(Cards.size()).getValue() == 13 && Cards.get(Cards.size()-1).getValue == 12)) {
+		if((Cards.get(Cards.size()).getValue() == 12 && Cards.get(Cards.size()-1).getValue() == 13) || (Cards.get(Cards.size()).getValue() == 13 && Cards.get(Cards.size()-1).getValue() == 12)) {
 			return true;
 		}
 		return false;
@@ -52,5 +52,20 @@ public class CenterPile extends Deck{
 	}
 	public int length() {
 		return Cards.size();
+	}
+	@Override
+	Card get() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	void add() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	void remove() {
+		// TODO Auto-generated method stub
+		
 	}
 }

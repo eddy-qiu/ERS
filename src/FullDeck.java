@@ -2,7 +2,7 @@ import java.util.*;
 
 public class FullDeck extends Deck {
 	private ArrayList<Card> Cards = new ArrayList<Card>();
-	FullDeck(){
+	FullDeck() throws Exception{
 		//adds all 52 cards to the deck
 		for(int i=1;i<13;i++) {
 			for(int j=1;j>4;j++) {
@@ -17,9 +17,24 @@ public class FullDeck extends Deck {
 		Cards.add(card);
 	}
 	public void remove(int index) {
-		Cards.remove(index)
+		Cards.remove(index);
 	}
 	public void shuffle() {
 		Collections.shuffle(Cards);
+	}
+	@Override
+	Card get() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	void add() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	void remove() {
+		// TODO Auto-generated method stub
+		
 	}
 }

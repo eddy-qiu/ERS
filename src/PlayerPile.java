@@ -1,9 +1,9 @@
-import java.until.*;
+import java.util.*;
 
 public class PlayerPile extends Deck{
-	ArrayList<Card> Cards = new ArrayList<Card>;
+	ArrayList<Card> Cards = new ArrayList<Card>();
 	public Card get(int index) {
-		Cards.get(index);
+		return Cards.get(index);
 	}
 	public void add(Card card) {
 		Cards.add(card);
@@ -13,5 +13,18 @@ public class PlayerPile extends Deck{
 	}
 	public int length() {
 		return Cards.size();
+	}
+	public void add() {
+		
+	}
+	@Override
+	Card get() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	void remove() {
+		// TODO Auto-generated method stub
+		
 	}
 }
