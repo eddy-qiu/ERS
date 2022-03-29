@@ -54,11 +54,6 @@ public class CenterPile extends Deck{
 		return Cards.size();
 	}
 	@Override
-	Card get() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
 	void add() {
 		// TODO Auto-generated method stub
 		

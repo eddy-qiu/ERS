@@ -18,11 +18,6 @@ public class PlayerPile extends Deck{
 		
 	}
 	@Override
-	Card get() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
 	void remove() {
 		// TODO Auto-generated method stub
 		
