@@ -18,6 +18,7 @@ public class Tester {
 		System.out.println(b.isSlap());
 		b.add(new Card(3));
 		System.out.println(b.isSlap());
+		System.out.println(b.faceSequence());
 		b.add(new Card(13));
 		b.add(new Card(12));
 		System.out.println(b.isSlap());
