@@ -10,6 +10,7 @@ public class MenuScreen extends JPanel implements ActionListener{
 	private int tutorialPage = 0;
 
 	public MenuScreen() {
+		 
 		mainFrame = new JFrame("Egyptian Rat Screw");
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		menuPanel = new JPanel();
@@ -22,7 +23,7 @@ public class MenuScreen extends JPanel implements ActionListener{
 		tutorialPanel = new JPanel();
 		tutorialPanel.setBackground(Color.GREEN);
 		tutorialPanel.setLayout(new BoxLayout
-				(tutorialPanel, BoxLayout.PAGE_AXIS));
+				(tutorialPanel, BoxLayout.Y_AXIS));
 		
 		titleText = new JLabel("Egyptian Rat Screw");
 		titleText.setAlignmentX(CENTER_ALIGNMENT);
@@ -42,13 +43,13 @@ public class MenuScreen extends JPanel implements ActionListener{
 		menuPanel.add(tutorialButton);
 		
 		backToMain = new JButton("Back to menu");
-		backToMain.setAlignmentX(CENTER_ALIGNMENT);
+		backToMain.setAlignmentX(LEFT_ALIGNMENT);
 		backToMain.setAlignmentY(TOP_ALIGNMENT);
 		backToMain.addActionListener(this);
 		tutorialPanel.add(backToMain);
 	
 		nextPage = new JButton("Next");
-		nextPage.setAlignmentX(LEFT_ALIGNMENT);
+		nextPage.setAlignmentX(RIGHT_ALIGNMENT);
 		nextPage.setAlignmentY(BOTTOM_ALIGNMENT);
 		nextPage.addActionListener(this);
 		tutorialPanel.add(nextPage);
@@ -61,26 +62,23 @@ public class MenuScreen extends JPanel implements ActionListener{
 		mainFrame.setSize(720, 720);
 		tutorialPanel.setBorder(BorderFactory.
 				createEmptyBorder(360, 360, 360, 360));
+		tutorialFrame.setSize(720, 720);
 		mainFrame.setContentPane(menuPanel);
 		mainFrame.pack();
 		
 		tutorialFrame.setContentPane(tutorialPanel);
 		tutorialFrame.pack();
 		mainFrame.setVisible(true);
-		tutorialFrame.hide();
+		tutorialFrame.setVisible(false);;
 	}
 	public void actionPerformed(ActionEvent event) {
 		String eventName = event.getActionCommand();
 		if(eventName.equals("Tutorial")) {
-			tutorialFrame.show();
-			tutorialFrame.setSize(720, 720);
+			tutorialFrame.setVisible(true);
 			mainFrame.hide();
 			
-			tutorialFrame.setVisible(true);
-			tutorialPanel.add(backToMain);
-			
 		}else if(eventName.equals("Next")) {
-			
+			tutorialText.setText("Second Page");
 		}else if(eventName.equals("Back to menu")) {
 			tutorialFrame.dispose();
 			mainFrame.show();
