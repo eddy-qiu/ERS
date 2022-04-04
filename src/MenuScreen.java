@@ -75,13 +75,13 @@ public class MenuScreen extends JPanel implements ActionListener{
 		String eventName = event.getActionCommand();
 		if(eventName.equals("Tutorial")) {
 			tutorialFrame.setVisible(true);
-			mainFrame.hide();
+			mainFrame.setVisible(false);
 			
 		}else if(eventName.equals("Next")) {
 			tutorialText.setText("Second Page");
 		}else if(eventName.equals("Back to menu")) {
 			tutorialFrame.dispose();
-			mainFrame.show();
+			mainFrame.setVisible(true);
 		}	
 	}
 	private static void menuGUI() {
