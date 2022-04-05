@@ -10,27 +10,13 @@ public class MenuScreen extends JPanel implements ActionListener{
 	private int tutorialPage = 1;
 
 	public MenuScreen() {
-		 
+		//Main Panel
 		mainFrame = new JFrame("Egyptian Rat Screw");
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		menuPanel = new JPanel();
 		menuPanel.setBackground(Color.YELLOW);
 		menuPanel.setLayout(new BoxLayout
 				(menuPanel, BoxLayout.PAGE_AXIS));
-		
-		tutorialFrame = new JFrame("Tutorial");
-		tutorialFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		tutorialPanel = new JPanel();
-		tutorialPanel.setBackground(Color.GREEN);
-		tutorialPanel.setLayout(new BoxLayout
-				(tutorialPanel, BoxLayout.PAGE_AXIS));
-		
-		buttonPanel = new JPanel();
-		buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.LINE_AXIS));
-		buttonPanel.setBorder(BorderFactory.createEmptyBorder(0, 20, 10, 20));
-		buttonPanel.add(Box.createHorizontalGlue());
-		
-		tutorialPanel.add(buttonPanel, BorderLayout.PAGE_END);
 		
 		titleText = new JLabel("Egyptian Rat Screw");
 		titleText.setAlignmentX(CENTER_ALIGNMENT);
@@ -49,6 +35,26 @@ public class MenuScreen extends JPanel implements ActionListener{
 		tutorialButton.addActionListener(this);
 		menuPanel.add(tutorialButton);
 		
+		
+		//Tutorial Panel
+		tutorialFrame = new JFrame("Tutorial");
+		tutorialFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		tutorialPanel = new JPanel();
+		tutorialPanel.setBackground(Color.GREEN);
+		tutorialPanel.setLayout(new BoxLayout
+				(tutorialPanel, BoxLayout.PAGE_AXIS));
+		
+		textPanel = new JPanel();
+		textPanel.setLayout(new BoxLayout(textPanel, BoxLayout.PAGE_AXIS));
+		textPanel.setBorder(BorderFactory.createEmptyBorder(0, 20, 10, 20));
+		
+		buttonPanel = new JPanel();
+		buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.LINE_AXIS));
+		buttonPanel.setBorder(BorderFactory.createEmptyBorder(0, 20, 10, 20));
+		buttonPanel.add(Box.createHorizontalGlue());
+		
+		tutorialPanel.add(buttonPanel, BorderLayout.PAGE_END);
+		
 		backToMain = new JButton("Back to menu");
 		backToMain.setAlignmentX(CENTER_ALIGNMENT);
 		backToMain.setAlignmentY(TOP_ALIGNMENT);
@@ -56,14 +62,15 @@ public class MenuScreen extends JPanel implements ActionListener{
 		tutorialPanel.add(backToMain);
 	
 		nextPage = new JButton("Next");
-		nextPage.setAlignmentX(CENTER_ALIGNMENT);
-		nextPage.setAlignmentY(TOP_ALIGNMENT);
+//		nextPage.setAlignmentX(CENTER_ALIGNMENT);
+//		nextPage.setAlignmentY(TOP_ALIGNMENT);
 		nextPage.addActionListener(this);
 		buttonPanel.add(nextPage);
 		
 		tutorialText = new JLabel("First Page");
+		tutorialText.setPreferredSize(new Dimension(200, 40));
 		tutorialText.setAlignmentX(CENTER_ALIGNMENT);
-		tutorialText.setAlignmentY(BOTTOM_ALIGNMENT);
+//		tutorialText.setAlignmentY(TOP_ALIGNMENT);
 		tutorialPanel.add(tutorialText);
 		
 		menuPanel.setBorder(BorderFactory.
@@ -78,7 +85,7 @@ public class MenuScreen extends JPanel implements ActionListener{
 		tutorialFrame.setContentPane(tutorialPanel);
 		tutorialFrame.pack();
 		mainFrame.setVisible(true);
-		tutorialFrame.setVisible(false);;
+		tutorialFrame.setVisible(false);
 	}
 	public void actionPerformed(ActionEvent event) {
 		String eventName = event.getActionCommand();
