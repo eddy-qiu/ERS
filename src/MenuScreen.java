@@ -4,10 +4,10 @@ import java.awt.*;
 public class MenuScreen extends JPanel implements ActionListener{
 
 	JFrame mainFrame, tutorialFrame;
-	JPanel menuPanel, tutorialPanel;
+	JPanel menuPanel, tutorialPanel, buttonPanel, textPanel;
 	JButton start, tutorialButton, nextPage, backToMain;
 	JLabel titleText, tutorialText;
-	private int tutorialPage = 0;
+	private int tutorialPage = 1;
 
 	public MenuScreen() {
 		 
@@ -23,7 +23,14 @@ public class MenuScreen extends JPanel implements ActionListener{
 		tutorialPanel = new JPanel();
 		tutorialPanel.setBackground(Color.GREEN);
 		tutorialPanel.setLayout(new BoxLayout
-				(tutorialPanel, BoxLayout.Y_AXIS));
+				(tutorialPanel, BoxLayout.PAGE_AXIS));
+		
+		buttonPanel = new JPanel();
+		buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.LINE_AXIS));
+		buttonPanel.setBorder(BorderFactory.createEmptyBorder(0, 20, 10, 20));
+		buttonPanel.add(Box.createHorizontalGlue());
+		
+		tutorialPanel.add(buttonPanel, BorderLayout.PAGE_END);
 		
 		titleText = new JLabel("Egyptian Rat Screw");
 		titleText.setAlignmentX(CENTER_ALIGNMENT);
@@ -43,18 +50,20 @@ public class MenuScreen extends JPanel implements ActionListener{
 		menuPanel.add(tutorialButton);
 		
 		backToMain = new JButton("Back to menu");
-		backToMain.setAlignmentX(LEFT_ALIGNMENT);
+		backToMain.setAlignmentX(CENTER_ALIGNMENT);
 		backToMain.setAlignmentY(TOP_ALIGNMENT);
 		backToMain.addActionListener(this);
 		tutorialPanel.add(backToMain);
 	
 		nextPage = new JButton("Next");
-		nextPage.setAlignmentX(RIGHT_ALIGNMENT);
-		nextPage.setAlignmentY(BOTTOM_ALIGNMENT);
+		nextPage.setAlignmentX(CENTER_ALIGNMENT);
+		nextPage.setAlignmentY(TOP_ALIGNMENT);
 		nextPage.addActionListener(this);
-		tutorialPanel.add(nextPage);
+		buttonPanel.add(nextPage);
 		
-		tutorialText = new JLabel("Tutorial");
+		tutorialText = new JLabel("First Page");
+		tutorialText.setAlignmentX(CENTER_ALIGNMENT);
+		tutorialText.setAlignmentY(BOTTOM_ALIGNMENT);
 		tutorialPanel.add(tutorialText);
 		
 		menuPanel.setBorder(BorderFactory.
@@ -75,13 +84,29 @@ public class MenuScreen extends JPanel implements ActionListener{
 		String eventName = event.getActionCommand();
 		if(eventName.equals("Tutorial")) {
 			tutorialFrame.setVisible(true);
-			mainFrame.setVisible(false);
+			mainFrame.hide();
 			
 		}else if(eventName.equals("Next")) {
-			tutorialText.setText("Second Page");
+			
+			if(tutorialPage == 0) {
+				tutorialText.setText("All 52 cards will be dealt evenly among every player. The player will always starts first  ");
+				tutorialPage++;
+			}else if(tutorialPage == 1) {
+				tutorialText.setText("Second Page");
+				tutorialPage++;
+			}else if(tutorialPage == 2) {
+				tutorialText.setText("Third Page");
+				tutorialPage++;
+			}else if(tutorialPage == 3) {
+				tutorialText.setText("Fourth Page");
+				tutorialPage++;
+			}else if(tutorialPage == 4) {
+				tutorialText.setText("Fifth Page");
+				tutorialPage = 0;
+			}
 		}else if(eventName.equals("Back to menu")) {
 			tutorialFrame.dispose();
-			mainFrame.setVisible(true);
+			mainFrame.show();
 		}	
 	}
 	private static void menuGUI() {
