@@ -16,8 +16,8 @@ public class FullDeck extends Deck {
 	public void add(Card card) {
 		Cards.add(card);
 	}
-	public void remove(int index) {
-		Cards.remove(index);
+	public Card remove(int index) {
+		return Cards.remove(index);
 	}
 	public void shuffle() {
 		Collections.shuffle(Cards);

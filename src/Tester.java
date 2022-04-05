@@ -31,6 +31,7 @@ public class Tester {
 		System.out.println(b.faceSequence());
 		System.out.println(b.faceSequence());
 		System.out.println(b.faceSequence());
+		System.out.println(52/3);
 	}
 	
 }
