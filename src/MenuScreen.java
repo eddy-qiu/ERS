@@ -4,9 +4,10 @@ import java.awt.*;
 public class MenuScreen extends JPanel implements ActionListener{
 
 	JFrame mainFrame, tutorialFrame;
-	JPanel menuPanel, menuTextPanel, tutorialPanel, tutorialbuttonPanel, tutorialTextPanel, menubuttonPanel;
+	JPanel menuPanel, menuTextPanel, tutorialPanel, 
+	tutorialbuttonPanel, tutorialTextPanel, menubuttonPanel;
 	JButton start, tutorialButton, nextPage, backToMain;
-	JLabel titleText, tutorialText;
+	JLabel titleText, tutorialText, card, card2, card3, card4, empty1, empty2, empty3;
 	private int tutorialPage = 1;
 
 	public MenuScreen(){
@@ -15,8 +16,7 @@ public class MenuScreen extends JPanel implements ActionListener{
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		menuPanel = new JPanel();
 		menuPanel.setBackground(Color.YELLOW);
-		menuPanel.setLayout(new BoxLayout
-				(menuPanel, BoxLayout.PAGE_AXIS));
+		menuPanel.setLayout(new GridLayout(3,3, 10, 10));
 		
 		titleText = new JLabel("Egyptian Rat Screw");
 		titleText.setAlignmentX(CENTER_ALIGNMENT);
@@ -34,12 +34,27 @@ public class MenuScreen extends JPanel implements ActionListener{
 		tutorialButton.setAlignmentY(TOP_ALIGNMENT);
 		tutorialButton.addActionListener(this);
 		//menuPanel.add(tutorialButton);
+		empty1 = new JLabel(" ");
+		empty2 = new JLabel(" ");
+		empty3 = new JLabel(" ");
+		
+		ImageIcon card1 = new ImageIcon("cards/cardBack.png");
+		Image image1 = card1.getImage();
+		Image newimg = image1.getScaledInstance(120, 120,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
+		card1 = new ImageIcon(newimg);  // transform it back
+		card = new JLabel(card1);
+		card2 = new JLabel(card1);
+		card3 = new JLabel(card1);
+		card4 = new JLabel(card1);
 		
 		menuTextPanel = new JPanel();
 		menuTextPanel.setLayout(new BoxLayout(menuTextPanel, BoxLayout.PAGE_AXIS));
 		menuTextPanel.setBorder(BorderFactory.createEmptyBorder(0, 20, 10, 20));
 		menuTextPanel.add(titleText);
-		menuPanel.add(menuTextPanel, BorderLayout.CENTER);
+//		menuPanel.add(menuTextPanel);
+		
+		
+		
 		
 		menubuttonPanel = new JPanel();
 		menubuttonPanel.setLayout(new BoxLayout(menubuttonPanel, BoxLayout.LINE_AXIS));
@@ -47,12 +62,25 @@ public class MenuScreen extends JPanel implements ActionListener{
 		menubuttonPanel.add(start);
 		menubuttonPanel.add(Box.createHorizontalGlue());
 		menubuttonPanel.add(tutorialButton);
-		menuPanel.add(menubuttonPanel, BorderLayout.PAGE_END);
+//		menuPanel.add(menubuttonPanel);
 		
+		menuPanel.add(empty1);
 		
+		menuPanel.add(card);
 		
+		menuPanel.add(empty2);
 		
+		menuPanel.add(card2);
 		
+		menuPanel.add(menuTextPanel);
+		
+		menuPanel.add(card3);
+		
+		menuPanel.add(empty3);
+		
+		menuPanel.add(card4);
+		
+		menuPanel.add(menubuttonPanel);
 		//Tutorial Panel
 		tutorialFrame = new JFrame("Tutorial");
 		tutorialFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -93,7 +121,7 @@ public class MenuScreen extends JPanel implements ActionListener{
 		tutorialPanel.add(tutorialbuttonPanel, BorderLayout.PAGE_END);
 		
 		menuPanel.setBorder(BorderFactory.
-				createEmptyBorder(360, 360, 360, 360));
+				createEmptyBorder(100, 100, 100, 100));
 //		mainFrame.setSize(720, 720);
 		tutorialPanel.setBorder(BorderFactory.
 				createEmptyBorder(30, 30, 30, 30));
