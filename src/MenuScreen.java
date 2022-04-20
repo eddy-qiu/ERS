@@ -16,7 +16,7 @@ public class MenuScreen extends JPanel implements ActionListener{
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		menuPanel = new JPanel();
 		menuPanel.setBackground(Color.YELLOW);
-		menuPanel.setLayout(new GridLayout(3,3, 10, 20));
+		menuPanel.setLayout(new GridLayout(3,3, 20, 20));
 
 		titleText = new JLabel("Egyptian Rat Screw");
 		titleText.setAlignmentX(CENTER_ALIGNMENT);
@@ -35,12 +35,16 @@ public class MenuScreen extends JPanel implements ActionListener{
 		empty3 = new JLabel(" ");
 
 		ImageIcon cardBack = new ImageIcon("cards/cardBack.png");
+		ImageIcon rotatedCardBack = new ImageIcon("cards/cardBackSideways.png");
 		Image image1 = cardBack.getImage();
-		Image newimg = image1.getScaledInstance(120, 160,  java.awt.Image.SCALE_SMOOTH);  
-		cardBack = new ImageIcon(newimg);
+		Image image2 = rotatedCardBack.getImage();
+		Image newimg1 = image1.getScaledInstance(120, 160, java.awt.Image.SCALE_SMOOTH);  
+		Image newimg2 = image1.getScaledInstance(160, 120, java.awt.Image.SCALE_SMOOTH);
+		cardBack = new ImageIcon(newimg1);
+		rotatedCardBack = new ImageIcon(newimg2);
 		topCard = new JLabel(cardBack);
-		leftCard = new JLabel(cardBack);
-		rightCard = new JLabel(cardBack);
+		leftCard = new JLabel(rotatedCardBack);
+		rightCard = new JLabel(rotatedCardBack);
 		bottomCard = new JLabel(cardBack);
 
 		menuTextPanel = new JPanel();
