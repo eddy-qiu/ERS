@@ -4,36 +4,17 @@ import java.awt.*;
 public class MenuScreen extends JPanel implements ActionListener{
 
 	JFrame mainFrame, tutorialFrame;
-	JPanel menuPanel, menuTextPanel, tutorialPanel, 
-	tutorialbuttonPanel, tutorialTextPanel, menuButtonPanel;
+	JPanel mainPanel, titlePanel, tutorialPanel, 
+	tutorialbuttonPanel, tutorialTextPanel, menuButtonPanel, 
+	rightCardPanel, leftCardPanel, topCardPanel;
 	JButton start, tutorialButton, nextPage, backToMain;
-	JLabel titleText, tutorialText, topCard, leftCard, rightCard, bottomCard, empty1, empty2, empty3;
+	JLabel titleText, tutorialText, topCard, leftCard, rightCard,
+	bottomCard, empty1, empty2, empty3;
+	JComboBox topCardDiff, rightCardDiff, leftCardDiff;
 	private int tutorialPage = 1;
 
 	public MenuScreen(){
-		//Main Panel
-		mainFrame = new JFrame("Egyptian Rat Screw");
-		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		menuPanel = new JPanel();
-		menuPanel.setBackground(Color.YELLOW);
-		menuPanel.setLayout(new GridLayout(3,3, 20, 20));
-
-		titleText = new JLabel("Egyptian Rat Screw");
-		titleText.setAlignmentX(CENTER_ALIGNMENT);
-
-		start = new JButton("Start Game");
-		start.setAlignmentX(CENTER_ALIGNMENT);
-		start.setAlignmentY(BOTTOM_ALIGNMENT);
-		start.addActionListener(this);
-
-		tutorialButton = new JButton("Tutorial");
-		tutorialButton.setAlignmentX(RIGHT_ALIGNMENT);
-		tutorialButton.setAlignmentY(TOP_ALIGNMENT);
-		tutorialButton.addActionListener(this);
-		empty1 = new JLabel(" ");
-		empty2 = new JLabel(" ");
-		empty3 = new JLabel(" ");
-
+		
 		ImageIcon cardBack = new ImageIcon("cards/cardBack.png");
 		ImageIcon rotatedCardBack = new ImageIcon("cards/cardBackSideways.png");
 		Image image1 = cardBack.getImage();
@@ -43,32 +24,83 @@ public class MenuScreen extends JPanel implements ActionListener{
 		cardBack = new ImageIcon(newimg1);
 		rotatedCardBack = new ImageIcon(newimg2);
 		topCard = new JLabel(cardBack);
+		topCard.setAlignmentX(CENTER_ALIGNMENT);
 		leftCard = new JLabel(rotatedCardBack);
+		leftCard.setAlignmentX(CENTER_ALIGNMENT);
 		rightCard = new JLabel(rotatedCardBack);
+		rightCard.setAlignmentX(CENTER_ALIGNMENT);
 		bottomCard = new JLabel(cardBack);
+		
+		String[] Difficulty = {
+				"Not active",
+				"easy", 
+				"medium", 
+				"hard" 
+		};
+		
+		topCardDiff = new JComboBox(Difficulty);
+		rightCardDiff = new JComboBox(Difficulty);
+		leftCardDiff = new JComboBox(Difficulty);
+		//Main Panel
+		mainFrame = new JFrame("Egyptian Rat Screw");
+		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		mainPanel = new JPanel();
+		mainPanel.setBackground(Color.YELLOW);
+		mainPanel.setLayout(new GridLayout(3,3, 20, 20));
 
-		menuTextPanel = new JPanel();
-		menuTextPanel.setLayout(new BoxLayout(menuTextPanel, BoxLayout.Y_AXIS));
-		menuTextPanel.setBorder(BorderFactory.createEmptyBorder(0, 20, 10, 20));
-		menuTextPanel.add(titleText);
-		menuTextPanel.add(start);
+		rightCardPanel= new JPanel();
+		rightCardPanel.setLayout(new BoxLayout(rightCardPanel, BoxLayout.Y_AXIS));
+		rightCardPanel.add(rightCard);
+		rightCardPanel.add(rightCardDiff);
+		
+		leftCardPanel= new JPanel();
+		leftCardPanel.setLayout(new BoxLayout(leftCardPanel, BoxLayout.Y_AXIS));
+		leftCardPanel.add(leftCard);
+		leftCardPanel.add(leftCardDiff);
+		
+		topCardPanel= new JPanel();
+		topCardPanel.setLayout(new BoxLayout(topCardPanel, BoxLayout.Y_AXIS));
+		topCardPanel.add(topCard);
+		topCardPanel.add(topCardDiff);
+		
+		titleText = new JLabel("Egyptian Rat Screw");
+		titleText.setAlignmentX(CENTER_ALIGNMENT);
+
+		start = new JButton("Start Game");
+		start.setAlignmentX(CENTER_ALIGNMENT);
+		start.setAlignmentY(BOTTOM_ALIGNMENT);
+		start.addActionListener(this);
+
+		tutorialButton = new JButton("Tutorial");
+		tutorialButton.setAlignmentX(CENTER_ALIGNMENT);
+		tutorialButton.setAlignmentY(TOP_ALIGNMENT);
+		tutorialButton.addActionListener(this);
+		empty1 = new JLabel(" ");
+		empty2 = new JLabel(" ");
+		empty3 = new JLabel(" ");
+
+		titlePanel = new JPanel();
+		titlePanel.setLayout(new BoxLayout(titlePanel, BoxLayout.PAGE_AXIS));
+		titlePanel.setBorder(BorderFactory.createEmptyBorder(0, 20, 10, 20));
+		titlePanel.add(titleText);
+		titlePanel.add(start);
 
 		menuButtonPanel = new JPanel();
-		menuButtonPanel.setLayout(new BoxLayout(menuButtonPanel, BoxLayout.Y_AXIS));
-		menuButtonPanel.setBorder(BorderFactory.createEmptyBorder(0, 20, 10, 20));
+		menuButtonPanel.setLayout(new GridLayout(3,1, 0, 0));
+		//menuButtonPanel.setBorder(BorderFactory.createEmptyBorder(0, 20, 10, 20));
 		menuButtonPanel.setBackground(Color.YELLOW);
 		menuButtonPanel.add(Box.createVerticalGlue());
 		menuButtonPanel.add(tutorialButton);
 
-		menuPanel.add(empty1);
-		menuPanel.add(topCard);
-		menuPanel.add(empty2);
-		menuPanel.add(leftCard);
-		menuPanel.add(menuTextPanel);
-		menuPanel.add(rightCard);
-		menuPanel.add(empty3);
-		menuPanel.add(bottomCard);
-		menuPanel.add(menuButtonPanel);
+		mainPanel.add(empty1);
+		mainPanel.add(topCardPanel);
+		mainPanel.add(empty2);
+		mainPanel.add(leftCardPanel);
+		mainPanel.add(titlePanel);
+		mainPanel.add(rightCardPanel);
+		mainPanel.add(empty3);
+		mainPanel.add(bottomCard);
+		mainPanel.add(menuButtonPanel);
 
 
 
@@ -113,13 +145,13 @@ public class MenuScreen extends JPanel implements ActionListener{
 		tutorialbuttonPanel.add(nextPage);
 		tutorialPanel.add(tutorialbuttonPanel, BorderLayout.PAGE_END);
 
-		menuPanel.setBorder(BorderFactory.
+		mainPanel.setBorder(BorderFactory.
 				createEmptyBorder(100, 100, 100, 100));
 		//		mainFrame.setSize(720, 720);
 		tutorialPanel.setBorder(BorderFactory.
 				createEmptyBorder(30, 30, 30, 30));
 		//		tutorialPanel.setSize(720, 720);
-		mainFrame.setContentPane(menuPanel);
+		mainFrame.setContentPane(mainPanel);
 		mainFrame.pack();
 
 		tutorialFrame.setContentPane(tutorialPanel);
