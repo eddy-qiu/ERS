@@ -1,14 +1,14 @@
 
 public class Tester {
 	public static void main(String[] args) throws Exception {
-		FullDeck a  = new FullDeck();
+		FullDeck a  = new FullDeck(); //fulldeck testing
 		System.out.println(a.length());
 		System.out.println(a.get(1).value);
 		System.out.println(a.get(10).value);
 		a.shuffle();
 		System.out.println(a.get(1).value);
 		
-		CenterPile b = new CenterPile();
+		CenterPile b = new CenterPile(); //centerpile testing
 		System.out.println(b.isSlap());
 		b.add(new Card(13));
 		b.add(new Card(3));
