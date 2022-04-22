@@ -3,11 +3,11 @@ import java.awt.event.*;
 import java.awt.*; 
 public class MenuScreen extends JPanel implements ActionListener{
 
-	JFrame mainFrame, tutorialFrame;
-	JPanel mainPanel, titlePanel, tutorialPanel, 
-	tutorialbuttonPanel, tutorialTextPanel, menuButtonPanel, 
+	JFrame mainFrame, ruleFrame;
+	JPanel mainPanel, titlePanel, rulePanel, 
+	rulebuttonPanel, ruleTextPanel, menuButtonPanel, 
 	rightCardPanel, leftCardPanel, topCardPanel;
-	JButton start, tutorialButton, nextPage, backToMain;
+	JButton start, tutorialButton, ruleButton, nextPage, backToMain;
 	JLabel titleText, tutorialText, topCard, leftCard, rightCard,
 	bottomCard, empty1, empty2, empty3;
 	JComboBox topCardDiff, rightCardDiff, leftCardDiff;
@@ -20,7 +20,7 @@ public class MenuScreen extends JPanel implements ActionListener{
 		Image image1 = cardBack.getImage();
 		Image image2 = rotatedCardBack.getImage();
 		Image newimg1 = image1.getScaledInstance(120, 160, java.awt.Image.SCALE_SMOOTH);  
-		Image newimg2 = image1.getScaledInstance(160, 120, java.awt.Image.SCALE_SMOOTH);
+		Image newimg2 = image2.getScaledInstance(160, 120, java.awt.Image.SCALE_SMOOTH);
 		cardBack = new ImageIcon(newimg1);
 		rotatedCardBack = new ImageIcon(newimg2);
 		topCard = new JLabel(cardBack);
@@ -48,17 +48,17 @@ public class MenuScreen extends JPanel implements ActionListener{
 		mainPanel.setBackground(Color.YELLOW);
 		mainPanel.setLayout(new GridLayout(3,3, 20, 20));
 
-		rightCardPanel= new JPanel();
+		rightCardPanel = new JPanel();
 		rightCardPanel.setLayout(new BoxLayout(rightCardPanel, BoxLayout.Y_AXIS));
 		rightCardPanel.add(rightCard);
 		rightCardPanel.add(rightCardDiff);
 		
-		leftCardPanel= new JPanel();
+		leftCardPanel = new JPanel();
 		leftCardPanel.setLayout(new BoxLayout(leftCardPanel, BoxLayout.Y_AXIS));
 		leftCardPanel.add(leftCard);
 		leftCardPanel.add(leftCardDiff);
 		
-		topCardPanel= new JPanel();
+		topCardPanel = new JPanel();
 		topCardPanel.setLayout(new BoxLayout(topCardPanel, BoxLayout.Y_AXIS));
 		topCardPanel.add(topCard);
 		topCardPanel.add(topCardDiff);
@@ -75,6 +75,11 @@ public class MenuScreen extends JPanel implements ActionListener{
 		tutorialButton.setAlignmentX(CENTER_ALIGNMENT);
 		tutorialButton.setAlignmentY(TOP_ALIGNMENT);
 		tutorialButton.addActionListener(this);
+		
+		ruleButton = new JButton("Rules");
+		ruleButton.setAlignmentX(CENTER_ALIGNMENT);
+		ruleButton.setAlignmentY(TOP_ALIGNMENT);
+		ruleButton.addActionListener(this);
 		empty1 = new JLabel(" ");
 		empty2 = new JLabel(" ");
 		empty3 = new JLabel(" ");
@@ -86,11 +91,10 @@ public class MenuScreen extends JPanel implements ActionListener{
 		titlePanel.add(start);
 
 		menuButtonPanel = new JPanel();
-		menuButtonPanel.setLayout(new GridLayout(3,1, 0, 0));
-		//menuButtonPanel.setBorder(BorderFactory.createEmptyBorder(0, 20, 10, 20));
+		menuButtonPanel.setLayout(new GridLayout(2,1, 0, 0));
 		menuButtonPanel.setBackground(Color.YELLOW);
-		menuButtonPanel.add(Box.createVerticalGlue());
 		menuButtonPanel.add(tutorialButton);
+		menuButtonPanel.add(ruleButton);
 
 		mainPanel.add(empty1);
 		mainPanel.add(topCardPanel);
@@ -107,12 +111,12 @@ public class MenuScreen extends JPanel implements ActionListener{
 
 
 		//Tutorial Panel
-		tutorialFrame = new JFrame("Tutorial");
-		tutorialFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		tutorialPanel = new JPanel();
-		tutorialPanel.setBackground(Color.GREEN);
-		tutorialPanel.setLayout(new BoxLayout
-				(tutorialPanel, BoxLayout.PAGE_AXIS));
+		ruleFrame = new JFrame("Tutorial");
+		ruleFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		rulePanel = new JPanel();
+		rulePanel.setBackground(Color.GREEN);
+		rulePanel.setLayout(new BoxLayout
+				(rulePanel, BoxLayout.PAGE_AXIS));
 
 		backToMain = new JButton("Back to menu");
 		//		backToMain.setAlignmentX(CENTER_ALIGNMENT);
@@ -130,39 +134,39 @@ public class MenuScreen extends JPanel implements ActionListener{
 		tutorialText.setAlignmentX(LEFT_ALIGNMENT);
 		//		tutorialText.setAlignmentY(TOP_ALIGNMENT);
 
-		tutorialTextPanel = new JPanel();
-		tutorialTextPanel.setLayout(new BoxLayout(tutorialTextPanel, BoxLayout.PAGE_AXIS));
-		tutorialTextPanel.setBorder(BorderFactory.createEmptyBorder(0, 20, 10, 20));
-		tutorialTextPanel.add(tutorialText);
-		tutorialPanel.add(tutorialTextPanel, BorderLayout.CENTER);
+		ruleTextPanel = new JPanel();
+		ruleTextPanel.setLayout(new BoxLayout(ruleTextPanel, BoxLayout.PAGE_AXIS));
+		ruleTextPanel.setBorder(BorderFactory.createEmptyBorder(0, 20, 10, 20));
+		ruleTextPanel.add(tutorialText);
+		rulePanel.add(ruleTextPanel, BorderLayout.CENTER);
 
-		tutorialbuttonPanel = new JPanel();
-		tutorialbuttonPanel.setLayout(new BoxLayout(tutorialbuttonPanel, BoxLayout.LINE_AXIS));
-		tutorialbuttonPanel.setBorder(BorderFactory.createEmptyBorder(0, 20, 10, 20));
+		rulebuttonPanel = new JPanel();
+		rulebuttonPanel.setLayout(new BoxLayout(rulebuttonPanel, BoxLayout.LINE_AXIS));
+		rulebuttonPanel.setBorder(BorderFactory.createEmptyBorder(0, 20, 10, 20));
 		//		buttonPanel.setSize(720, 360);
-		tutorialbuttonPanel.add(backToMain);
-		tutorialbuttonPanel.add(Box.createHorizontalGlue());
-		tutorialbuttonPanel.add(nextPage);
-		tutorialPanel.add(tutorialbuttonPanel, BorderLayout.PAGE_END);
+		rulebuttonPanel.add(backToMain);
+		rulebuttonPanel.add(Box.createHorizontalGlue());
+		rulebuttonPanel.add(nextPage);
+		rulePanel.add(rulebuttonPanel, BorderLayout.PAGE_END);
 
 		mainPanel.setBorder(BorderFactory.
 				createEmptyBorder(100, 100, 100, 100));
 		//		mainFrame.setSize(720, 720);
-		tutorialPanel.setBorder(BorderFactory.
+		rulePanel.setBorder(BorderFactory.
 				createEmptyBorder(30, 30, 30, 30));
 		//		tutorialPanel.setSize(720, 720);
 		mainFrame.setContentPane(mainPanel);
 		mainFrame.pack();
 
-		tutorialFrame.setContentPane(tutorialPanel);
-		tutorialFrame.pack();
+		ruleFrame.setContentPane(rulePanel);
+		ruleFrame.pack();
 		mainFrame.setVisible(true);
-		tutorialFrame.setVisible(false);
+		ruleFrame.setVisible(false);
 	}
 	public void actionPerformed(ActionEvent event) {
 		String eventName = event.getActionCommand();
-		if(eventName.equals("Tutorial")) {
-			tutorialFrame.setVisible(true);
+		if(eventName.equals("Rules")) {
+			ruleFrame.setVisible(true);
 			mainFrame.hide();
 
 		}else if(eventName.equals("Next")) {
@@ -184,7 +188,7 @@ public class MenuScreen extends JPanel implements ActionListener{
 				tutorialPage = 0;
 			}
 		}else if(eventName.equals("Back to menu")) {
-			tutorialFrame.dispose();
+			ruleFrame.dispose();
 			mainFrame.show();
 		}	
 	}
