@@ -8,7 +8,7 @@ public class MenuScreen extends JPanel implements ActionListener{
 	rulebuttonPanel, ruleTextPanel, menuButtonPanel, 
 	rightCardPanel, leftCardPanel, topCardPanel;
 	JButton start, tutorialButton, ruleButton, nextPage, backToMain;
-	JLabel titleText, ruleText, topCard, leftCard, rightCard,
+	JLabel titleText, ruleImage1, ruleImage2, topCard, leftCard, rightCard,
 	bottomCard, empty1, empty2, empty3;
 	JComboBox topCardDiff, rightCardDiff, leftCardDiff;
 	private int rulePage = 1;
@@ -29,14 +29,14 @@ public class MenuScreen extends JPanel implements ActionListener{
 		rightCard = new JLabel(rotatedCardBack);
 		rightCard.setAlignmentX(CENTER_ALIGNMENT);
 		bottomCard = new JLabel(cardBack);
-		
+
 		String[] Difficulty = {
 				"Not active",
 				"easy", 
 				"medium", 
 				"hard" 
 		};
-		
+
 		topCardDiff = new JComboBox(Difficulty);
 		rightCardDiff = new JComboBox(Difficulty);
 		leftCardDiff = new JComboBox(Difficulty);
@@ -51,17 +51,17 @@ public class MenuScreen extends JPanel implements ActionListener{
 		rightCardPanel.setLayout(new BoxLayout(rightCardPanel, BoxLayout.Y_AXIS));
 		rightCardPanel.add(rightCard);
 		rightCardPanel.add(rightCardDiff);
-		
+
 		leftCardPanel = new JPanel();
 		leftCardPanel.setLayout(new BoxLayout(leftCardPanel, BoxLayout.Y_AXIS));
 		leftCardPanel.add(leftCard);
 		leftCardPanel.add(leftCardDiff);
-		
+
 		topCardPanel = new JPanel();
 		topCardPanel.setLayout(new BoxLayout(topCardPanel, BoxLayout.Y_AXIS));
 		topCardPanel.add(topCard);
 		topCardPanel.add(topCardDiff);
-		
+
 		titleText = new JLabel("Egyptian Rat Screw");
 		titleText.setAlignmentX(CENTER_ALIGNMENT);
 
@@ -74,7 +74,7 @@ public class MenuScreen extends JPanel implements ActionListener{
 		tutorialButton.setAlignmentX(CENTER_ALIGNMENT);
 		tutorialButton.setAlignmentY(TOP_ALIGNMENT);
 		tutorialButton.addActionListener(this);
-		
+
 		ruleButton = new JButton("Rules");
 		ruleButton.setAlignmentX(CENTER_ALIGNMENT);
 		ruleButton.setAlignmentY(TOP_ALIGNMENT);
@@ -119,13 +119,17 @@ public class MenuScreen extends JPanel implements ActionListener{
 
 		nextPage = new JButton("Next");
 		nextPage.addActionListener(this);
-		
-		ruleText = new JLabel("First Page");
-		ruleText.setAlignmentX(CENTER_ALIGNMENT);
+
+		ImageIcon Rule1 = new ImageIcon("Rules and Tutorial/RuleImg1.png");
+		ImageIcon Rule2 = new ImageIcon("Rules and Tutorial/RuleImg2.png");
+		ruleImage1 = new JLabel(Rule1);
+		ruleImage2 = new JLabel(Rule2);
+
 		ruleTextPanel = new JPanel();
-		ruleTextPanel.setLayout(new BoxLayout(ruleTextPanel, BoxLayout.PAGE_AXIS));
-		ruleTextPanel.setBorder(BorderFactory.createEmptyBorder(0, 20, 10, 20));
-		ruleTextPanel.add(ruleText);
+		ruleTextPanel.setLayout(new BoxLayout(ruleTextPanel, BoxLayout.Y_AXIS));
+		ruleTextPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+		ruleImage1.setAlignmentX(CENTER_ALIGNMENT);
+		ruleTextPanel.add(ruleImage1);
 		rulePanel.add(ruleTextPanel, BorderLayout.CENTER);
 
 		rulebuttonPanel = new JPanel();
@@ -164,26 +168,14 @@ public class MenuScreen extends JPanel implements ActionListener{
 			ruleFrame.setVisible(true);
 			mainFrame.hide();
 		}else if(eventName.equals("Next")) {
-			if(rulePage == 0) {
-				ruleText.setText("All 52 cards will be dealt evenly among every player. The player will always starts first  ");
-				rulePage++;
-			}else if(rulePage == 1) {
-				ruleText.setText("Second Page");
-				rulePage++;
-			}else if(rulePage == 2) {
-				ruleText.setText("Third Page");
-				rulePage++;
-			}else if(rulePage == 3) {
-				ruleText.setText("Fourth Page");
-				rulePage++;
-			}else if(rulePage == 4) {
-				ruleText.setText("Fifth Page");
-				rulePage = 0;
-			}
-		}else if(eventName.equals("Back to menu")) {
+			rulePage++;
+			ruleTextPanel.remove(ruleImage1);
+			ruleTextPanel.add(ruleImage2);
+		}
+		else if(eventName.equals("Back to menu")) {
 			ruleFrame.dispose();
 			mainFrame.show();
-		}	
+		}
 	}
 	private static void menuGUI() {
 		JFrame.setDefaultLookAndFeelDecorated
