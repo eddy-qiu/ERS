@@ -3,24 +3,23 @@ import java.awt.event.*;
 import java.awt.*; 
 public class MenuScreen extends JPanel implements ActionListener{
 
-	JFrame mainFrame, tutorialFrame;
-	JPanel mainPanel, titlePanel, tutorialPanel, 
-	tutorialbuttonPanel, tutorialTextPanel, menuButtonPanel, 
+	JFrame mainFrame, ruleFrame;
+	JPanel mainPanel, titlePanel, rulePanel, 
+	rulebuttonPanel, ruleTextPanel, menuButtonPanel, 
 	rightCardPanel, leftCardPanel, topCardPanel;
-	JButton start, tutorialButton, nextPage, backToMain;
-	JLabel titleText, tutorialText, topCard, leftCard, rightCard,
+	JButton start, tutorialButton, ruleButton, nextPage, backToMain;
+	JLabel titleText, ruleText, topCard, leftCard, rightCard,
 	bottomCard, empty1, empty2, empty3;
 	JComboBox topCardDiff, rightCardDiff, leftCardDiff;
-	private int tutorialPage = 1;
+	private int rulePage = 1;
 
 	public MenuScreen(){
-		
 		ImageIcon cardBack = new ImageIcon("cards/cardBack.png");
 		ImageIcon rotatedCardBack = new ImageIcon("cards/cardBackSideways.png");
 		Image image1 = cardBack.getImage();
 		Image image2 = rotatedCardBack.getImage();
 		Image newimg1 = image1.getScaledInstance(120, 160, java.awt.Image.SCALE_SMOOTH);  
-		Image newimg2 = image1.getScaledInstance(160, 120, java.awt.Image.SCALE_SMOOTH);
+		Image newimg2 = image2.getScaledInstance(160, 120, java.awt.Image.SCALE_SMOOTH);
 		cardBack = new ImageIcon(newimg1);
 		rotatedCardBack = new ImageIcon(newimg2);
 		topCard = new JLabel(cardBack);
@@ -48,17 +47,17 @@ public class MenuScreen extends JPanel implements ActionListener{
 		mainPanel.setBackground(Color.YELLOW);
 		mainPanel.setLayout(new GridLayout(3,3, 20, 20));
 
-		rightCardPanel= new JPanel();
+		rightCardPanel = new JPanel();
 		rightCardPanel.setLayout(new BoxLayout(rightCardPanel, BoxLayout.Y_AXIS));
 		rightCardPanel.add(rightCard);
 		rightCardPanel.add(rightCardDiff);
 		
-		leftCardPanel= new JPanel();
+		leftCardPanel = new JPanel();
 		leftCardPanel.setLayout(new BoxLayout(leftCardPanel, BoxLayout.Y_AXIS));
 		leftCardPanel.add(leftCard);
 		leftCardPanel.add(leftCardDiff);
 		
-		topCardPanel= new JPanel();
+		topCardPanel = new JPanel();
 		topCardPanel.setLayout(new BoxLayout(topCardPanel, BoxLayout.Y_AXIS));
 		topCardPanel.add(topCard);
 		topCardPanel.add(topCardDiff);
@@ -75,22 +74,27 @@ public class MenuScreen extends JPanel implements ActionListener{
 		tutorialButton.setAlignmentX(CENTER_ALIGNMENT);
 		tutorialButton.setAlignmentY(TOP_ALIGNMENT);
 		tutorialButton.addActionListener(this);
+		
+		ruleButton = new JButton("Rules");
+		ruleButton.setAlignmentX(CENTER_ALIGNMENT);
+		ruleButton.setAlignmentY(TOP_ALIGNMENT);
+		ruleButton.addActionListener(this);
 		empty1 = new JLabel(" ");
 		empty2 = new JLabel(" ");
 		empty3 = new JLabel(" ");
 
 		titlePanel = new JPanel();
-		titlePanel.setLayout(new BoxLayout(titlePanel, BoxLayout.PAGE_AXIS));
+		titlePanel.setLayout(new GridLayout(3,1,0,0));
 		titlePanel.setBorder(BorderFactory.createEmptyBorder(0, 20, 10, 20));
+		titlePanel.add(empty1);
 		titlePanel.add(titleText);
 		titlePanel.add(start);
 
 		menuButtonPanel = new JPanel();
-		menuButtonPanel.setLayout(new GridLayout(3,1, 0, 0));
-		//menuButtonPanel.setBorder(BorderFactory.createEmptyBorder(0, 20, 10, 20));
+		menuButtonPanel.setLayout(new GridLayout(2,1, 0, 0));
 		menuButtonPanel.setBackground(Color.YELLOW);
-		menuButtonPanel.add(Box.createVerticalGlue());
 		menuButtonPanel.add(tutorialButton);
+		menuButtonPanel.add(ruleButton);
 
 		mainPanel.add(empty1);
 		mainPanel.add(topCardPanel);
@@ -103,88 +107,81 @@ public class MenuScreen extends JPanel implements ActionListener{
 		mainPanel.add(menuButtonPanel);
 
 
-
-
-
-		//Tutorial Panel
-		tutorialFrame = new JFrame("Tutorial");
-		tutorialFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		tutorialPanel = new JPanel();
-		tutorialPanel.setBackground(Color.GREEN);
-		tutorialPanel.setLayout(new BoxLayout
-				(tutorialPanel, BoxLayout.PAGE_AXIS));
+		//Rule Panel
+		ruleFrame = new JFrame("Rules");
+		ruleFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		rulePanel = new JPanel();
+		rulePanel.setBackground(Color.GREEN);
+		rulePanel.setLayout(new GridLayout(2,1,0,20));
 
 		backToMain = new JButton("Back to menu");
-		//		backToMain.setAlignmentX(CENTER_ALIGNMENT);
-		//		backToMain.setAlignmentY(TOP_ALIGNMENT);
 		backToMain.addActionListener(this);
 
-
 		nextPage = new JButton("Next");
-		//		nextPage.setAlignmentX(CENTER_ALIGNMENT);
-		//		nextPage.setAlignmentY(TOP_ALIGNMENT);
 		nextPage.addActionListener(this);
+		
+		ruleText = new JLabel("First Page");
+		ruleText.setAlignmentX(CENTER_ALIGNMENT);
+		ruleTextPanel = new JPanel();
+		ruleTextPanel.setLayout(new BoxLayout(ruleTextPanel, BoxLayout.PAGE_AXIS));
+		ruleTextPanel.setBorder(BorderFactory.createEmptyBorder(0, 20, 10, 20));
+		ruleTextPanel.add(ruleText);
+		rulePanel.add(ruleTextPanel, BorderLayout.CENTER);
 
-		tutorialText = new JLabel("First Page");
-		tutorialText.setPreferredSize(new Dimension(720, 50));
-		tutorialText.setAlignmentX(LEFT_ALIGNMENT);
-		//		tutorialText.setAlignmentY(TOP_ALIGNMENT);
-
-		tutorialTextPanel = new JPanel();
-		tutorialTextPanel.setLayout(new BoxLayout(tutorialTextPanel, BoxLayout.PAGE_AXIS));
-		tutorialTextPanel.setBorder(BorderFactory.createEmptyBorder(0, 20, 10, 20));
-		tutorialTextPanel.add(tutorialText);
-		tutorialPanel.add(tutorialTextPanel, BorderLayout.CENTER);
-
-		tutorialbuttonPanel = new JPanel();
-		tutorialbuttonPanel.setLayout(new BoxLayout(tutorialbuttonPanel, BoxLayout.LINE_AXIS));
-		tutorialbuttonPanel.setBorder(BorderFactory.createEmptyBorder(0, 20, 10, 20));
-		//		buttonPanel.setSize(720, 360);
-		tutorialbuttonPanel.add(backToMain);
-		tutorialbuttonPanel.add(Box.createHorizontalGlue());
-		tutorialbuttonPanel.add(nextPage);
-		tutorialPanel.add(tutorialbuttonPanel, BorderLayout.PAGE_END);
+		rulebuttonPanel = new JPanel();
+		rulebuttonPanel.setLayout(new BoxLayout(rulebuttonPanel, BoxLayout.LINE_AXIS));
+		rulebuttonPanel.setBorder(BorderFactory.createEmptyBorder(0, 20, 10, 20));
+		rulebuttonPanel.add(backToMain);
+		rulebuttonPanel.add(nextPage);
+		rulePanel.add(rulebuttonPanel, BorderLayout.PAGE_END);
 
 		mainPanel.setBorder(BorderFactory.
-				createEmptyBorder(100, 100, 100, 100));
-		//		mainFrame.setSize(720, 720);
-		tutorialPanel.setBorder(BorderFactory.
+				createEmptyBorder(50, 50, 50, 50));
+		rulePanel.setBorder(BorderFactory.
 				createEmptyBorder(30, 30, 30, 30));
-		//		tutorialPanel.setSize(720, 720);
 		mainFrame.setContentPane(mainPanel);
 		mainFrame.pack();
-
-		tutorialFrame.setContentPane(tutorialPanel);
-		tutorialFrame.pack();
 		mainFrame.setVisible(true);
-		tutorialFrame.setVisible(false);
+
+		ruleFrame.setContentPane(rulePanel);
+		ruleFrame.pack();
+		ruleFrame.setVisible(false);
+	}
+	public String getDifficulty(int card) {
+		String Difficulty = "";
+		if(card == 1){
+			Difficulty = (String) topCardDiff.getSelectedItem();
+		}else if(card == 2) {
+			Difficulty = (String) rightCardDiff.getSelectedItem();
+		}else if(card == 3) {
+			Difficulty = (String) leftCardDiff.getSelectedItem();
+		}
+		return Difficulty;
 	}
 	public void actionPerformed(ActionEvent event) {
 		String eventName = event.getActionCommand();
-		if(eventName.equals("Tutorial")) {
-			tutorialFrame.setVisible(true);
+		if(eventName.equals("Rules")) {
+			ruleFrame.setVisible(true);
 			mainFrame.hide();
-
 		}else if(eventName.equals("Next")) {
-
-			if(tutorialPage == 0) {
-				tutorialText.setText("All 52 cards will be dealt evenly among every player. The player will always starts first  ");
-				tutorialPage++;
-			}else if(tutorialPage == 1) {
-				tutorialText.setText("Second Page");
-				tutorialPage++;
-			}else if(tutorialPage == 2) {
-				tutorialText.setText("Third Page");
-				tutorialPage++;
-			}else if(tutorialPage == 3) {
-				tutorialText.setText("Fourth Page");
-				tutorialPage++;
-			}else if(tutorialPage == 4) {
-				tutorialText.setText("Fifth Page");
-				tutorialPage = 0;
+			if(rulePage == 0) {
+				ruleText.setText("All 52 cards will be dealt evenly among every player. The player will always starts first  ");
+				rulePage++;
+			}else if(rulePage == 1) {
+				ruleText.setText("Second Page");
+				rulePage++;
+			}else if(rulePage == 2) {
+				ruleText.setText("Third Page");
+				rulePage++;
+			}else if(rulePage == 3) {
+				ruleText.setText("Fourth Page");
+				rulePage++;
+			}else if(rulePage == 4) {
+				ruleText.setText("Fifth Page");
+				rulePage = 0;
 			}
 		}else if(eventName.equals("Back to menu")) {
-			tutorialFrame.dispose();
+			ruleFrame.dispose();
 			mainFrame.show();
 		}	
 	}
