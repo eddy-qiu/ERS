@@ -40,6 +40,12 @@ public class Tester {
 		Card one = new Card(4, "spades");
 		JLabel oneCard = new JLabel(one.getImage());
 		panel.add(oneCard);
+		Card two = new Card(5, "hearts");
+		JLabel twoCard = new JLabel(two.getImageSideways());
+		panel.add(twoCard);
+		Card three = new Card(13, "diamonds");
+		JLabel threeCard = new JLabel(three.getImageSideways());
+		panel.add(threeCard);
 		frame.add(panel);
 		frame.pack();
 		frame.setVisible(true);

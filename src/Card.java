@@ -29,44 +29,61 @@ public class Card {
 	public String getSuite() {
 		return cardSuite;
 	}
+	public String appendCardName() {
+		String cardName = String.valueOf(this.getValue());
+		if(this.isFace() || this.getValue() == 1) {
+			if(this.getValue() == 11) {
+				cardName = "jack";
+			}
+			if(this.getValue() == 12) {
+				cardName = "queen";
+			}
+			if(this.getValue() == 13) {
+				cardName = "king";
+			}
+			if(this.getValue() == 1) {
+				cardName = "ace";
+			}
+		}
+		return String.valueOf("cards/"+ cardName + "_of_"+ this.getSuite() + ".png");
+	}
 	public ImageIcon getImage() {
-		String appendedCardName = String.valueOf("cards/"+this.getValue() + "_of_"+ this.getSuite() + ".png");
-		System.out.println(appendedCardName);
-		cardImage = new ImageIcon(appendedCardName);
+		cardImage = new ImageIcon(this.appendCardName());
 		Image image1 = cardImage.getImage();
 		Image newimg1 = image1.getScaledInstance(120,160,java.awt.Image.SCALE_SMOOTH);
 		return new ImageIcon(newimg1);
 	}
 	public ImageIcon getImageSideways() {
-		String appendedCardName = String.valueOf("cards/"this.getValue() + "_of_"+ this.getSuite() + ".png");
-		cardImage = new ImageIcon(appendedCardName);
+		cardImage = new ImageIcon(this.appendCardName());
 		Image image1 = cardImage.getImage();
-		Image newimg1 = image1.getScaledInstance(120,160,java.awt.Image.SCALE_SMOOTH);
 		
-	    BufferedImage image = (BufferedImage)newimg1;
+		BufferedImage image = new BufferedImage(image1.getWidth(null), image1.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+
+	    Graphics2D bGr = image.createGraphics();
+	    bGr.drawImage(image1, 0, 0, null);
+	    bGr.dispose();
 		
-		// Calculate the new size of the image based on the angle of rotaion
 	    double radians = Math.toRadians(90);
 	    double sin = Math.abs(Math.sin(radians));
 	    double cos = Math.abs(Math.cos(radians));
 	    int newWidth = (int) Math.round(image.getWidth() * cos + image.getHeight() * sin);
 	    int newHeight = (int) Math.round(image.getWidth() * sin + image.getHeight() * cos);
 
-	    // Create a new image
 	    BufferedImage rotate = new BufferedImage(newWidth, newHeight, BufferedImage.TYPE_INT_ARGB);
 	    Graphics2D g2d = rotate.createGraphics();
-	    // Calculate the "anchor" point around which the image will be rotated
+
 	    int x = (newWidth - image.getWidth()) / 2;
 	    int y = (newHeight - image.getHeight()) / 2;
-	    // Transform the origin point around the anchor point
+
 	    AffineTransform at = new AffineTransform();
 	    at.setToRotation(radians, x + (image.getWidth() / 2), y + (image.getHeight() / 2));
 	    at.translate(x, y);
 	    g2d.setTransform(at);
-	    // Paint the original image
+
 	    g2d.drawImage(image, 0, 0, null);
 	    g2d.dispose();
 	    
-	    return new ImageIcon(rotate);
+	    Image rotate1 = rotate.getScaledInstance(160,120,java.awt.Image.SCALE_SMOOTH);
+	    return new ImageIcon(rotate1);
 	}
 }
