@@ -168,9 +168,15 @@ public class MenuScreen extends JPanel implements ActionListener{
 			ruleFrame.setVisible(true);
 			mainFrame.hide();
 		}else if(eventName.equals("Next")) {
-			rulePage++;
-			ruleTextPanel.remove(ruleImage1);
-			ruleTextPanel.add(ruleImage2);
+			if(rulePage == 0) {
+				ruleTextPanel.remove(ruleImage1);
+				ruleTextPanel.add(ruleImage2);
+				rulePage++;
+			}else if(rulePage == 1){
+				ruleTextPanel.remove(ruleImage2);
+				ruleTextPanel.add(ruleImage1);
+				rulePage = 0;
+			}
 		}
 		else if(eventName.equals("Back to menu")) {
 			ruleFrame.dispose();
