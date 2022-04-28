@@ -5,9 +5,10 @@ public class FullDeck extends Deck {
 	FullDeck() throws Exception{
 		//adds all 52 cards to the deck
 		for(int i=1;i<14;i++) {
-			for(int j=1;j<5;j++) {
-				Cards.add(new Card(i));
-			}
+				Cards.add(new Card(i,"hearts"));
+				Cards.add(new Card(i,"spades"));
+				Cards.add(new Card(i,"diamonds"));
+				Cards.add(new Card(i,"clubs"));
 		}
 	}
 	public int length() {
