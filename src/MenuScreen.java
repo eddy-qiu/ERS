@@ -66,6 +66,8 @@ public class MenuScreen extends JPanel implements ActionListener{
 		titleText.setAlignmentX(CENTER_ALIGNMENT);
 
 		start = new JButton("Start Game");
+		start.addActionListener(this);
+		start.setActionCommand("Game");
 		start.setAlignmentX(CENTER_ALIGNMENT);
 		start.setAlignmentY(BOTTOM_ALIGNMENT);
 		start.addActionListener(this);
@@ -152,7 +154,7 @@ public class MenuScreen extends JPanel implements ActionListener{
 		ruleFrame.setVisible(false);
 	}
 	public String getDifficulty(int card) {
-		String Difficulty = "";
+		String Difficulty = "None";
 		if(card == 1){
 			Difficulty = (String) topCardDiff.getSelectedItem();
 		}else if(card == 2) {
@@ -166,7 +168,7 @@ public class MenuScreen extends JPanel implements ActionListener{
 		String eventName = event.getActionCommand();
 		if(eventName.equals("Rules")) {
 			ruleFrame.setVisible(true);
-			mainFrame.hide();
+			mainFrame.setVisible(false);
 		}else if(eventName.equals("Next")) {
 			if(rulePage == 0) {
 				ruleTextPanel.remove(ruleImage1);
@@ -180,7 +182,27 @@ public class MenuScreen extends JPanel implements ActionListener{
 		}
 		else if(eventName.equals("Back to menu")) {
 			ruleFrame.dispose();
-			mainFrame.show();
+			mainFrame.setVisible(true);
+		}
+		else if(eventName.contentEquals("Game")){
+			int numPlayers = 4;
+			if(topCardDiff.getSelectedItem().equals("None")) {
+				numPlayers--;
+			}
+			if(leftCardDiff.getSelectedItem().equals("None")) {
+				numPlayers--;
+			}
+			if(rightCardDiff.getSelectedItem().equals("None")) {
+				numPlayers--;
+			}
+			try {
+				GamePanel game = new GamePanel(numPlayers);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			mainFrame.setVisible(false);
+
 		}
 	}
 	private static void menuGUI() {

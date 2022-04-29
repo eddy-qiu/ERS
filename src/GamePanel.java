@@ -9,10 +9,10 @@ public class GamePanel extends JPanel implements ActionListener{
 	JFrame GameFrame;
 	JPanel mainPanel, rightCardPanel, leftCardPanel, topCardPanel, bottomCardPanel, centerPanel;
 	JLabel topCard, leftCard, rightCard, bottomCard, empty1, empty2, empty3, empty4;
-	
+
 	PlayerPile players[];
 	public GamePanel(int numPlayers) throws Exception{//remember that animations can be separate from some backend functionality
-		
+
 		ImageIcon cardBack = new ImageIcon("cards/cardBack.png");
 		ImageIcon rotatedCardBack = new ImageIcon("cards/cardBackSideways.png");
 		Image image1 = cardBack.getImage();
@@ -33,18 +33,18 @@ public class GamePanel extends JPanel implements ActionListener{
 		GameFrame = new JFrame("Egyptian Rat Screw");
 		GameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		GameFrame.setPreferredSize(new Dimension(720,720));
-		
+
 		mainPanel = new JPanel();
 		mainPanel.setBackground(Color.YELLOW);
 		mainPanel.setLayout(new GridLayout(3,3,20,20));
-		
+
 		centerPanel = new JPanel();
 		centerPanel.setBackground(Color.WHITE);
-		
+
 		rightCardPanel = new JPanel();
 		rightCardPanel.setLayout(new BoxLayout(rightCardPanel, BoxLayout.Y_AXIS));
 		rightCardPanel.add(rightCard);
-		
+
 		leftCardPanel = new JPanel();
 		leftCardPanel.setLayout(new BoxLayout(leftCardPanel, BoxLayout.Y_AXIS));
 		leftCardPanel.add(leftCard);
@@ -52,16 +52,16 @@ public class GamePanel extends JPanel implements ActionListener{
 		topCardPanel = new JPanel();
 		topCardPanel.setLayout(new BoxLayout(topCardPanel, BoxLayout.Y_AXIS));
 		topCardPanel.add(topCard);
-		
+
 		bottomCardPanel = new JPanel();
-		bottomCardPanel.setLayout(new BoxLayout(topCardPanel, BoxLayout.Y_AXIS));
+		bottomCardPanel.setLayout(new BoxLayout(bottomCardPanel, BoxLayout.Y_AXIS));
 		bottomCardPanel.add(bottomCard);
-		
+
 		empty1 = new JLabel("");
 		empty2 = new JLabel("");
 		empty3 = new JLabel("");
-		empty3 = new JLabel("");
-		
+		empty4 = new JLabel("");
+
 		mainPanel.add(empty1);
 		mainPanel.add(topCardPanel);
 		mainPanel.add(empty2);
@@ -71,11 +71,11 @@ public class GamePanel extends JPanel implements ActionListener{
 		mainPanel.add(empty3);
 		mainPanel.add(bottomCard);
 		mainPanel.add(empty4);
-		
+
 		GameFrame.setContentPane(mainPanel);
 		GameFrame.pack();
 		GameFrame.setVisible(true);
-		
+
 		//start game
 		players = new PlayerPile[numPlayers+1];
 		FullDeck allCards = new FullDeck(); //create 52 cards, shuffle them into respective number of player decks
