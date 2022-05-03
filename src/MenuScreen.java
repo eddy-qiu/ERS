@@ -8,9 +8,10 @@ public class MenuScreen extends JPanel implements ActionListener{
 	rulebuttonPanel, ruleTextPanel, menuButtonPanel, 
 	rightCardPanel, leftCardPanel, topCardPanel;
 	JButton start, tutorialButton, ruleButton, nextPage, backToMain;
-	JLabel titleText, ruleImage1, ruleImage2, topCard, leftCard, rightCard,
+	JLabel titleText, ruleImage, topCard, leftCard, rightCard,
 	bottomCard, empty1, empty2, empty3;
 	JComboBox topCardDiff, rightCardDiff, leftCardDiff;
+	ImageIcon Rule1, Rule2;
 	private int rulePage = 1;
 
 	public MenuScreen(){
@@ -122,23 +123,25 @@ public class MenuScreen extends JPanel implements ActionListener{
 		nextPage = new JButton("Next");
 		nextPage.addActionListener(this);
 
-		ImageIcon Rule1 = new ImageIcon("Rules and Tutorial/RuleImg1.png");
-		ImageIcon Rule2 = new ImageIcon("Rules and Tutorial/RuleImg2.png");
-		ruleImage1 = new JLabel(Rule1);
-		ruleImage2 = new JLabel(Rule2);
+		Rule1 = new ImageIcon("Rules and Tutorial/RuleImg1.png");
+		Rule2 = new ImageIcon("Rules and Tutorial/RuleImg2.png");
+		ruleImage = new JLabel(Rule1);
 
 		ruleTextPanel = new JPanel();
 		ruleTextPanel.setLayout(new BoxLayout(ruleTextPanel, BoxLayout.Y_AXIS));
 		ruleTextPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
-		ruleImage1.setAlignmentX(CENTER_ALIGNMENT);
-		ruleTextPanel.add(ruleImage1);
+		ruleTextPanel.setBackground(Color.GREEN);
+		ruleImage.setAlignmentX(CENTER_ALIGNMENT);
+		ruleTextPanel.add(ruleImage);
 		rulePanel.add(ruleTextPanel, BorderLayout.CENTER);
 
 		rulebuttonPanel = new JPanel();
-		rulebuttonPanel.setLayout(new BoxLayout(rulebuttonPanel, BoxLayout.LINE_AXIS));
+		rulebuttonPanel.setLayout(new BoxLayout(rulebuttonPanel, BoxLayout.Y_AXIS));
 		rulebuttonPanel.setBorder(BorderFactory.createEmptyBorder(0, 20, 10, 20));
-		rulebuttonPanel.add(backToMain);
+		backToMain.setAlignmentX(CENTER_ALIGNMENT);
+		nextPage.setAlignmentX(CENTER_ALIGNMENT);
 		rulebuttonPanel.add(nextPage);
+		rulebuttonPanel.add(backToMain);
 		rulePanel.add(rulebuttonPanel, BorderLayout.PAGE_END);
 
 		mainPanel.setBorder(BorderFactory.
@@ -171,12 +174,10 @@ public class MenuScreen extends JPanel implements ActionListener{
 			mainFrame.setVisible(false);
 		}else if(eventName.equals("Next")) {
 			if(rulePage == 0) {
-				ruleTextPanel.remove(ruleImage1);
-				ruleTextPanel.add(ruleImage2);
+				ruleImage.setIcon(Rule1);
 				rulePage++;
 			}else if(rulePage == 1){
-				ruleTextPanel.remove(ruleImage2);
-				ruleTextPanel.add(ruleImage1);
+				ruleImage.setIcon(Rule2);
 				rulePage = 0;
 			}
 		}
