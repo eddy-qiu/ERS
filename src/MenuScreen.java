@@ -207,7 +207,6 @@ public class MenuScreen extends JPanel implements ActionListener{
 				e.printStackTrace();
 			}
 			mainFrame.setVisible(false);
-
 		}
 	}
 	private static void menuGUI() {
