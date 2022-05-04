@@ -11,7 +11,7 @@ public class MenuScreen extends JPanel implements ActionListener{
 	JLabel titleText, ruleImage, topCard, leftCard, rightCard,
 	bottomCard, empty1, empty2, empty3;
 	JComboBox topCardDiff, rightCardDiff, leftCardDiff;
-	ImageIcon Rule1, Rule2;
+	ImageIcon Rule1, Rule2, Rule3;
 	private int rulePage = 1;
 
 	public MenuScreen(){
@@ -125,6 +125,7 @@ public class MenuScreen extends JPanel implements ActionListener{
 
 		Rule1 = new ImageIcon("Rules and Tutorial/RuleImg1.png");
 		Rule2 = new ImageIcon("Rules and Tutorial/RuleImg2.png");
+		Rule3 = new ImageIcon("Rules and Tutorial/RuleImg3.png");
 		ruleImage = new JLabel(Rule1);
 
 		ruleTextPanel = new JPanel();
@@ -178,6 +179,9 @@ public class MenuScreen extends JPanel implements ActionListener{
 				rulePage++;
 			}else if(rulePage == 1){
 				ruleImage.setIcon(Rule2);
+				rulePage++;
+			}else if(rulePage == 2) {
+				ruleImage.setIcon(Rule3);
 				rulePage = 0;
 			}
 		}
