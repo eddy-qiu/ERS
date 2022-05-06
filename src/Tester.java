@@ -1,3 +1,5 @@
+import java.awt.Image;
+
 import javax.swing.*;
 public class Tester {
 //	public static void main(String[] args) throws Exception {
@@ -46,6 +48,18 @@ public class Tester {
 		Card three = new Card(13, "diamonds");
 		JLabel threeCard = new JLabel(three.getImageSideways());
 		panel.add(threeCard);
+		ImageIcon winBack = new ImageIcon("cards/cardBackWin.png");
+		Image image1 = winBack.getImage();
+		Image newimg1 = image1.getScaledInstance(120, 160, java.awt.Image.SCALE_SMOOTH);
+		winBack = new ImageIcon(newimg1);
+		JLabel winBackLabel = new JLabel(winBack);
+		panel.add(winBackLabel);
+		ImageIcon winBackSideways = new ImageIcon("cards/cardBackSidewaysWin.png");
+		Image image2 = winBackSideways.getImage();
+		Image newimg2 = image2.getScaledInstance(160, 120, java.awt.Image.SCALE_SMOOTH);
+		winBackSideways = new ImageIcon(newimg2);
+		JLabel winBackSidewaysLabel = new JLabel(winBackSideways);
+		panel.add(winBackSidewaysLabel);
 		frame.add(panel);
 		frame.pack();
 		frame.setVisible(true);

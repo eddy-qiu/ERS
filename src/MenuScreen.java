@@ -195,17 +195,20 @@ public class MenuScreen extends JPanel implements ActionListener{
 		}
 		else if(eventName.contentEquals("Game")){
 			int numPlayers = 4;
-			if(topCardDiff.getSelectedItem().equals("None")) {
+			String bot1 = this.getDifficulty(1);
+			String bot2 = this.getDifficulty(2);
+			String bot3 = this.getDifficulty(3);
+			if(bot1.equals("None")) {
 				numPlayers--;
 			}
-			if(leftCardDiff.getSelectedItem().equals("None")) {
+			if(bot2.equals("None")) {
 				numPlayers--;
 			}
-			if(rightCardDiff.getSelectedItem().equals("None")) {
+			if(bot3.equals("None")) {
 				numPlayers--;
 			}
 			try {
-				GamePanel game = new GamePanel(numPlayers);
+				GamePanel game = new GamePanel(bot1,bot2,bot3,numPlayers);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

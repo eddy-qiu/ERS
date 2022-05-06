@@ -5,13 +5,14 @@ import java.awt.Image;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class GamePanel extends JPanel implements ActionListener{
+public class GamePanel extends JPanel implements ActionListener,MouseListener{
 	JFrame GameFrame;
 	JPanel mainPanel, rightCardPanel, leftCardPanel, topCardPanel, bottomCardPanel, centerPanel;
 	JLabel topCard, leftCard, rightCard, bottomCard, empty1, empty2, empty3, empty4;
-
+	Boolean playerTurn, slap;
+	
 	PlayerPile players[];
-	public GamePanel(int numPlayers) throws Exception{//remember that animations can be separate from some backend functionality
+	public GamePanel(String bot1,String bot2,String bot3,int numPlayers) throws Exception{//remember that animations can be separate from some backend functionality
 
 		ImageIcon cardBack = new ImageIcon("cards/cardBack.png");
 		ImageIcon rotatedCardBack = new ImageIcon("cards/cardBackSideways.png");
@@ -36,22 +37,33 @@ public class GamePanel extends JPanel implements ActionListener{
 
 		centerPanel = new JPanel();
 		centerPanel.setBackground(Color.WHITE);
+		centerPanel.addMouseListener(this);
 
 		rightCardPanel = new JPanel();
 		rightCardPanel.setLayout(new GridLayout(1,1,0,0));
 		rightCardPanel.add(rightCard);
+		if(bot1.equals("None")) {
+			rightCardPanel.setVisible(false);
+		}
 
 		leftCardPanel = new JPanel();
 		leftCardPanel.setLayout(new GridLayout(1,1,0,0));
 		leftCardPanel.add(leftCard);
+		if(bot3.equals("None")) {
+			leftCardPanel.setVisible(false);
+		}
 
 		topCardPanel = new JPanel();
 		topCardPanel.setLayout(new GridLayout(1,1,0,0));
 		topCardPanel.add(topCard);
+		if(bot2.equals("None")) {
+			topCardPanel.setVisible(false);
+		}
 
 		bottomCardPanel = new JPanel();
 		bottomCardPanel.setLayout(new GridLayout(1,1,0,0));
 		bottomCardPanel.add(bottomCard);
+		bottomCardPanel.addMouseListener(this);
 
 		empty1 = new JLabel("");
 		empty2 = new JLabel("");
@@ -106,6 +118,22 @@ public class GamePanel extends JPanel implements ActionListener{
 			for(int i=1;i<cardsPerPlayer+1;i++){
 				Card card = allCards.remove(0);
 				players[3].add(card);
+			}
+		}
+	}
+	public void mousePressed(MouseEvent e) {
+		JPanel clickedPanel = (JPanel) e.getSource();
+		if(clickedPanel == bottomCardPanel) {
+			if(playerTurn == true) {
+				
+			}
+		}
+		if(clickedPanel == centerPanel) {
+			if(slap == true) {
+				
+			}
+			else { //burn
+				
 			}
 		}
 	}
