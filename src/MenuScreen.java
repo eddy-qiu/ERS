@@ -19,8 +19,8 @@ public class MenuScreen extends JPanel implements ActionListener{
 		ImageIcon rotatedCardBack = new ImageIcon("cards/cardBackSideways.png");
 		Image image1 = cardBack.getImage();
 		Image image2 = rotatedCardBack.getImage();
-		Image newimg1 = image1.getScaledInstance(120, 160, java.awt.Image.SCALE_SMOOTH);  
-		Image newimg2 = image2.getScaledInstance(160, 120, java.awt.Image.SCALE_SMOOTH);
+		Image newimg1 = image1.getScaledInstance(140, 180, java.awt.Image.SCALE_SMOOTH);  
+		Image newimg2 = image2.getScaledInstance(180, 140, java.awt.Image.SCALE_SMOOTH);
 		cardBack = new ImageIcon(newimg1);
 		rotatedCardBack = new ImageIcon(newimg2);
 		topCard = new JLabel(cardBack);
@@ -46,7 +46,7 @@ public class MenuScreen extends JPanel implements ActionListener{
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainPanel = new JPanel();
 		mainPanel.setBackground(Color.YELLOW);
-		mainPanel.setLayout(new GridLayout(3,3, 20, 20));
+		mainPanel.setLayout(new GridLayout(3,3, 50, 25));
 
 		rightCardPanel = new JPanel();
 		rightCardPanel.setLayout(new BoxLayout(rightCardPanel, BoxLayout.Y_AXIS));
@@ -115,7 +115,7 @@ public class MenuScreen extends JPanel implements ActionListener{
 		ruleFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		rulePanel = new JPanel();
 		rulePanel.setBackground(Color.GREEN);
-		rulePanel.setLayout(new GridLayout(2,1,0,20));
+		rulePanel.setLayout(new GridLayout(2,1,0,0));
 
 		backToMain = new JButton("Back to menu");
 		backToMain.addActionListener(this);
@@ -126,8 +126,12 @@ public class MenuScreen extends JPanel implements ActionListener{
 		Rule1 = new ImageIcon("Rules and Tutorial/RuleImg1.png");
 		Rule2 = new ImageIcon("Rules and Tutorial/RuleImg2.png");
 		Rule3 = new ImageIcon("Rules and Tutorial/RuleImg3.png");
+		
+		Image image3 = Rule1.getImage();
+		Image newimg3 = image3.getScaledInstance(720, 360, java.awt.Image.SCALE_SMOOTH);
+		Rule1 = new ImageIcon(newimg3);
 		ruleImage = new JLabel(Rule1);
-
+		
 		ruleTextPanel = new JPanel();
 		ruleTextPanel.setLayout(new BoxLayout(ruleTextPanel, BoxLayout.Y_AXIS));
 		ruleTextPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
@@ -146,9 +150,9 @@ public class MenuScreen extends JPanel implements ActionListener{
 		rulePanel.add(rulebuttonPanel, BorderLayout.PAGE_END);
 
 		mainPanel.setBorder(BorderFactory.
-				createEmptyBorder(50, 50, 50, 50));
+				createEmptyBorder(25, 40, 25, 40));
 		rulePanel.setBorder(BorderFactory.
-				createEmptyBorder(30, 30, 30, 30));
+				createEmptyBorder(0, 0, 0, 0));
 		mainFrame.setContentPane(mainPanel);
 		mainFrame.pack();
 		mainFrame.setVisible(true);
@@ -172,7 +176,7 @@ public class MenuScreen extends JPanel implements ActionListener{
 		String eventName = event.getActionCommand();
 		if(eventName.equals("Rules")) {
 			ruleFrame.setVisible(true);
-			mainFrame.setVisible(false);
+//			smainFrame.setVisible(false);
 		}else if(eventName.equals("Next")) {
 			if(rulePage == 0) {
 				ruleImage.setIcon(Rule1);
