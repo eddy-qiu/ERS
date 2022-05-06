@@ -22,13 +22,9 @@ public class GamePanel extends JPanel implements ActionListener{
 		cardBack = new ImageIcon(newimg1);
 		rotatedCardBack = new ImageIcon(newimg2);
 		topCard = new JLabel(cardBack);
-		topCard.setAlignmentX(CENTER_ALIGNMENT);
 		leftCard = new JLabel(rotatedCardBack);
-		leftCard.setAlignmentX(CENTER_ALIGNMENT);
 		rightCard = new JLabel(rotatedCardBack);
-		rightCard.setAlignmentX(CENTER_ALIGNMENT);
 		bottomCard = new JLabel(cardBack);
-		bottomCard.setAlignmentX(CENTER_ALIGNMENT);
 		//create gui
 		GameFrame = new JFrame("Egyptian Rat Screw");
 		GameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -36,25 +32,25 @@ public class GamePanel extends JPanel implements ActionListener{
 
 		mainPanel = new JPanel();
 		mainPanel.setBackground(Color.YELLOW);
-		mainPanel.setLayout(new GridLayout(3,3,20,20));
+		mainPanel.setLayout(new GridLayout(3,3,10,10));
 
 		centerPanel = new JPanel();
 		centerPanel.setBackground(Color.WHITE);
 
 		rightCardPanel = new JPanel();
-		rightCardPanel.setLayout(new BoxLayout(rightCardPanel, BoxLayout.Y_AXIS));
+		rightCardPanel.setLayout(new GridLayout(1,1,0,0));
 		rightCardPanel.add(rightCard);
 
 		leftCardPanel = new JPanel();
-		leftCardPanel.setLayout(new BoxLayout(leftCardPanel, BoxLayout.Y_AXIS));
+		leftCardPanel.setLayout(new GridLayout(1,1,0,0));
 		leftCardPanel.add(leftCard);
 
 		topCardPanel = new JPanel();
-		topCardPanel.setLayout(new BoxLayout(topCardPanel, BoxLayout.Y_AXIS));
+		topCardPanel.setLayout(new GridLayout(1,1,0,0));
 		topCardPanel.add(topCard);
 
 		bottomCardPanel = new JPanel();
-		bottomCardPanel.setLayout(new BoxLayout(bottomCardPanel, BoxLayout.Y_AXIS));
+		bottomCardPanel.setLayout(new GridLayout(1,1,0,0));
 		bottomCardPanel.add(bottomCard);
 
 		empty1 = new JLabel("");
