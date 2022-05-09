@@ -11,8 +11,9 @@ public class GamePanel extends JPanel implements ActionListener,MouseListener{
 	JPanel mainPanel, rightCardPanel, leftCardPanel, topCardPanel, bottomCardPanel, centerPanel;
 	JLabel topCard, leftCard, rightCard, bottomCard, empty1, empty2, empty3, empty4;
 	Boolean playerTurn,slap,gameOver;
-	
-	PlayerPile players[];
+	CenterPile pile;
+	PlayerPile players[],playerHand,bot1Hand,bot2Hand,bot3Hand;
+	Player bot1Diff,bot2Diff,bot3Diff;
 	public GamePanel(String bot1,String bot2,String bot3,int numPlayers) throws Exception{//remember that animations can be separate from some backend functionality
 
 		ImageIcon cardBack = new ImageIcon("cards/cardBack.png");
@@ -121,21 +122,75 @@ public class GamePanel extends JPanel implements ActionListener,MouseListener{
 				players[3].add(card);
 			}
 		}
-		
+		int j = 0;
+		playerHand = players[j];
+		j++;
+		if(!bot1.contentEquals("None") ) {
+			bot1Hand = players[j];
+			j++;
+		}
+		if(!bot2.contentEquals("None") ) {
+			bot2Hand = players[j];
+			j++;
+		}
+		if(!bot3.contentEquals("None") ) {
+			bot3Hand = players[j];
+			j++;
+		}
+		if(bot1.equals("easy")) { //set the difficulty for the bots
+			bot1Diff = new EasyPlayer();
+		}
+		else if(bot1.equals("medium")) {
+			bot1Diff = new MediumPlayer();
+		}
+		else if(bot1.equals("hard")) {
+			bot1Diff = new HardPlayer();
+		}
+		if(bot2.equals("easy")) {
+			bot2Diff = new EasyPlayer();
+		}
+		else if(bot2.equals("medium")) {
+			bot2Diff = new MediumPlayer();
+		}
+		else if(bot2.equals("hard")) {
+			bot2Diff = new HardPlayer();
+		}
+		if(bot3.equals("easy")) {
+			bot3Diff = new EasyPlayer();
+		}
+		else if(bot3.equals("medium")) {
+			bot3Diff = new MediumPlayer();
+		}
+		else if(bot3.equals("hard")) {
+			bot3Diff = new HardPlayer();
+		}
+		if(!gameOver) {
+			while(playerTurn) {
+				//waits for playerTurn to turn false
+			}
+			if(!bot1.equals("None")) {
+				bot1Diff.getMove(pile,bot1Hand);
+				
+			}
+		}
 	}
 	public void mousePressed(MouseEvent e) {
 		JPanel clickedPanel = (JPanel) e.getSource();
 		if(clickedPanel == bottomCardPanel) {
 			if(playerTurn == true) {
-				
+				pile.add(playerHand.remove(0));
+				slap = pile.isSlap();
+				playerTurn = false;
 			}
 		}
 		if(clickedPanel == centerPanel) {
 			if(slap == true) {
-				
+				for(int i=0;i<pile.length();i++) {
+					playerHand.add(pile.remove(0));
+				}
 			}
 			else { //burn
-				
+				pile.add(playerHand.remove(0));
 			}
 		}
 	}

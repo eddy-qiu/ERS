@@ -32,7 +32,7 @@ public class MenuScreen extends JPanel implements ActionListener{
 		bottomCard = new JLabel(cardBack);
 
 		String[] Difficulty = {
-				"Not active",
+				"None",
 				"easy", 
 				"medium", 
 				"hard" 

@@ -10,8 +10,8 @@ public class CenterPile extends Deck{
 	public void add(Card card) {
 		Cards.add(card);
 	}
-	public void remove(int index) {
-		Cards.remove(index);
+	public Card remove(int index) {
+		return Cards.remove(index);
 	}
 	public boolean isSlap() {
 		if(Cards.size()<2) {
