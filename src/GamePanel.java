@@ -5,6 +5,7 @@ import java.awt.Image;
 import java.awt.event.*;
 import javax.swing.*;
 
+
 public class GamePanel extends JPanel implements ActionListener,MouseListener{
 	JFrame GameFrame;
 	JPanel mainPanel, rightCardPanel, leftCardPanel, topCardPanel, bottomCardPanel, centerPanel;
@@ -18,8 +19,8 @@ public class GamePanel extends JPanel implements ActionListener,MouseListener{
 		ImageIcon rotatedCardBack = new ImageIcon("cards/cardBackSideways.png");
 		Image image1 = cardBack.getImage();
 		Image image2 = rotatedCardBack.getImage();
-		Image newimg1 = image1.getScaledInstance(120, 160, java.awt.Image.SCALE_SMOOTH);  
-		Image newimg2 = image2.getScaledInstance(160, 120, java.awt.Image.SCALE_SMOOTH);
+		Image newimg1 = image1.getScaledInstance(140, 180, java.awt.Image.SCALE_SMOOTH);  
+		Image newimg2 = image2.getScaledInstance(180, 140, java.awt.Image.SCALE_SMOOTH);
 		cardBack = new ImageIcon(newimg1);
 		rotatedCardBack = new ImageIcon(newimg2);
 		topCard = new JLabel(cardBack);
@@ -33,7 +34,7 @@ public class GamePanel extends JPanel implements ActionListener,MouseListener{
 
 		mainPanel = new JPanel();
 		mainPanel.setBackground(Color.YELLOW);
-		mainPanel.setLayout(new GridLayout(3,3,10,10));
+		mainPanel.setLayout(new GridLayout(3,3,10,35));
 
 		centerPanel = new JPanel();
 		centerPanel.setBackground(Color.WHITE);
