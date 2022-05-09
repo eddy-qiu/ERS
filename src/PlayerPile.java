@@ -14,12 +14,12 @@ public class PlayerPile extends Deck{
 	public int length() {
 		return Cards.size();
 	}
-	public void add() {
-		
+	@Override
+	void add() {
+		// TODO Auto-generated method stub
 	}
 	@Override
 	void remove() {
 		// TODO Auto-generated method stub
-		
 	}
 }
