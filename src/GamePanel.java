@@ -9,7 +9,7 @@ public class GamePanel extends JPanel implements ActionListener,MouseListener{
 	JFrame GameFrame;
 	JPanel mainPanel, rightCardPanel, leftCardPanel, topCardPanel, bottomCardPanel, centerPanel;
 	JLabel topCard, leftCard, rightCard, bottomCard, empty1, empty2, empty3, empty4;
-	Boolean playerTurn, slap;
+	Boolean playerTurn,slap,gameOver;
 	
 	PlayerPile players[];
 	public GamePanel(String bot1,String bot2,String bot3,int numPlayers) throws Exception{//remember that animations can be separate from some backend functionality
@@ -120,6 +120,7 @@ public class GamePanel extends JPanel implements ActionListener,MouseListener{
 				players[3].add(card);
 			}
 		}
+		
 	}
 	public void mousePressed(MouseEvent e) {
 		JPanel clickedPanel = (JPanel) e.getSource();
