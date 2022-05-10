@@ -12,9 +12,10 @@ public class MediumPlayer extends Player{ //general template for computer player
 		}
 		return null;
 	}
-	public String getMove(boolean playerTurn) throws InterruptedException {
-		TimeUnit.SECONDS.sleep(3/2);
-		return "Play";
+	public void getMove(boolean playerTurn) throws InterruptedException {
+		if(!playerTurn) {
+			TimeUnit.SECONDS.sleep(3/2);
+		}
 	}
 	@Override
 	String getMove() {

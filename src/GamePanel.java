@@ -14,6 +14,7 @@ public class GamePanel extends JPanel implements ActionListener,MouseListener{
 	CenterPile pile;
 	PlayerPile players[],playerHand,bot1Hand,bot2Hand,bot3Hand;
 	Player bot1Diff,bot2Diff,bot3Diff;
+	int faceSequence;
 	public GamePanel(String bot1,String bot2,String bot3,int numPlayers) throws Exception{//remember that animations can be separate from some backend functionality
 
 		ImageIcon cardBack = new ImageIcon("cards/cardBack.png");
@@ -169,8 +170,52 @@ public class GamePanel extends JPanel implements ActionListener,MouseListener{
 				//waits for playerTurn to turn false
 			}
 			if(!bot1.equals("None")) {
-				bot1Diff.getMove(pile,bot1Hand);
-				
+				boolean bot1Turn = true;
+				while(bot1Turn) {
+					bot1Diff.getMove(playerTurn);
+					if(!playerTurn) {
+						pile.add(bot1Hand.remove(0));
+					}
+					if(pile.get(pile.length()-1).isFace()) {
+						faceSequence = pile.faceSequence();
+						bot1Turn = false;
+					}
+					else if(faceSequence == 0) {
+						bot1Turn = false;
+					}
+				}
+			}
+			if(!bot2.equals("None")) {
+				boolean bot2Turn = true;
+				while(bot2Turn) {
+					bot2Diff.getMove(playerTurn);
+					if(!playerTurn) {
+						pile.add(bot2Hand.remove(0));
+					}
+					if(pile.get(pile.length()-1).isFace()) {
+						faceSequence = pile.faceSequence();
+						bot2Turn = false;
+					}
+					else if(faceSequence == 0) {
+						bot2Turn = false;
+					}
+				}
+			}
+			if(!bot3.equals("None")) {
+				boolean bot3Turn = true;
+				while(bot3Turn) {
+					bot3Diff.getMove(playerTurn);
+					if(!playerTurn) {
+						pile.add(bot3Hand.remove(0));
+					}
+					if(pile.get(pile.length()-1).isFace()) {
+						faceSequence = pile.faceSequence();
+						bot3Turn = false;
+					}
+					else if(faceSequence == 0) {
+						bot3Turn = false;
+					}
+				}
 			}
 		}
 	}
