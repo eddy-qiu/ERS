@@ -2,7 +2,7 @@
 abstract class Player {
 	abstract String getMove();
 
-	abstract String getMove(CenterPile pile, PlayerPile bot1Hand);
+	abstract String getMove(CenterPile pile, PlayerPile bot1Hand) throws InterruptedException;
 
-	abstract void getMove(Boolean playerTurn);
+	abstract String getMove(boolean playerTurn) throws InterruptedException;
 }

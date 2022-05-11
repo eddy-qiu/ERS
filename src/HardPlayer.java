@@ -4,7 +4,7 @@ public class HardPlayer extends Player{ //general template for computer player, 
 	public String getMove(CenterPile pile, PlayerPile myPile) throws InterruptedException {
 		if(myPile.length() != 0 || myPile.length() > 0) {
 			if(pile.isSlap()) {
-				TimeUnit.SECONDS.sleep(1);
+				TimeUnit.MILLISECONDS.sleep(450);
 				return "Slap";
 			}
 		}
