@@ -226,6 +226,7 @@ public class GamePanel extends JPanel implements ActionListener,MouseListener{
 				pile.add(playerHand.remove(0));
 				slap = pile.isSlap();
 				playerTurn = false;
+				
 			}
 		}
 		if(clickedPanel == centerPanel) {
