@@ -4,13 +4,15 @@ public class main {
 		System.out.println("hello");
 		System.out.println("hello");
 		System.out.println("hi");
-		FullDeck game = null;
+		FullDeck gameDeck = null;
 		try {
-			game = new FullDeck();
+			gameDeck = new FullDeck();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		game.shuffle();
+		gameDeck.shuffle();
+		MenuScreen Game = new MenuScreen();
+		
 	}
 }

@@ -9,7 +9,8 @@ import javax.swing.*;
 public class GamePanel extends JPanel implements ActionListener,MouseListener{
 	JFrame GameFrame;
 	JPanel mainPanel, rightCardPanel, leftCardPanel, topCardPanel, bottomCardPanel, centerPanel;
-	JLabel topCard, leftCard, rightCard, bottomCard, empty1, empty2, empty3, empty4;
+	JLabel topCard, leftCard, rightCard, bottomCard, empty1, empty2, empty3, empty4, topCardAmount,
+	leftCardAmount,rightCardAmount,bottomCardAmount;
 	Boolean playerTurn,slap,gameOver;
 	CenterPile pile;
 	PlayerPile players[],playerHand,bot1Hand,bot2Hand,bot3Hand;
