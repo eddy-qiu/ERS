@@ -225,12 +225,4 @@ public class MenuScreen extends JPanel implements ActionListener{
 		(true);
 		MenuScreen menu = new MenuScreen();
 	}
-	public static void main(String[] args) {
-		javax.swing.SwingUtilities.
-		invokeLater(new Runnable() {
-			public void run() {
-				menuGUI();
-			}
-		});
-	}
 }
