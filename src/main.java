@@ -4,14 +4,7 @@ public class main {
 		System.out.println("hello");
 		System.out.println("hello");
 		System.out.println("hi");
-		FullDeck gameDeck = null;
-		try {
-			gameDeck = new FullDeck();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		gameDeck.shuffle();
+		
 		MenuScreen Game = new MenuScreen();
 		
 	}
