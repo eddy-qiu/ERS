@@ -4,5 +4,13 @@ public class main {
 		System.out.println("hello");
 		System.out.println("hello");
 		System.out.println("hi");
+		FullDeck game = null;
+		try {
+			game = new FullDeck();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		game.shuffle();
 	}
 }
