@@ -8,10 +8,11 @@ import javax.swing.*;
 
 public class GamePanel extends JPanel implements ActionListener,MouseListener{
 	JFrame GameFrame;
-	JPanel mainPanel, rightCardPanel, leftCardPanel, topCardPanel, bottomCardPanel, centerPanel;
+	JPanel mainPanel, rightCardPanel, leftCardPanel, topCardPanel, bottomCardPanel;
+	JLayeredPane centerPanel;
 	JLabel topCard, leftCard, rightCard, bottomCard, empty1, empty2, empty3, empty4, topCardAmount,
 	leftCardAmount,rightCardAmount,bottomCardAmount;
-	Boolean playerTurn,slap,gameOver;
+	Boolean playerTurn=true,slap,gameOver=false;
 	CenterPile pile;
 	PlayerPile players[],playerHand,bot1Hand,bot2Hand,bot3Hand;
 	Player bot1Diff,bot2Diff,bot3Diff;
@@ -39,14 +40,12 @@ public class GamePanel extends JPanel implements ActionListener,MouseListener{
 		mainPanel.setBackground(Color.YELLOW);
 		mainPanel.setLayout(new GridLayout(3,3,10,35));
 
-		centerPanel = new JPanel();
-		centerPanel.setBackground(Color.WHITE);
+		centerPanel = new JLayeredPane();
 		centerPanel.addMouseListener(this);
 
 		rightCardPanel = new JPanel();
 		rightCardPanel.setLayout(new GridLayout(1,1,0,0));
 		rightCardPanel.add(rightCard);
-		rightCardPanel.add();
 		if(bot1.equals("None")) {
 			rightCardPanel.setVisible(false);
 		}
@@ -173,9 +172,13 @@ public class GamePanel extends JPanel implements ActionListener,MouseListener{
 			}
 			if(!bot1.equals("None")) {
 				boolean bot1Turn = true;
-				while(bot1Turn) {
+				while(bot1Turn && faceSequence!=0) {
 					bot1Diff.getMove(playerTurn);
 					if(!playerTurn) {
+						ImageIcon card = bot1Hand.get(0).getImage();
+						JLabel cardPanel = new JLabel(card);
+						cardPanel.setBounds(50,50,50,50);
+						centerPanel.add(cardPanel);
 						pile.add(bot1Hand.remove(0));
 					}
 					if(pile.get(pile.length()-1).isFace()) {
@@ -185,11 +188,12 @@ public class GamePanel extends JPanel implements ActionListener,MouseListener{
 					else if(faceSequence == 0) {
 						bot1Turn = false;
 					}
+					faceSequence--;
 				}
 			}
 			if(!bot2.equals("None")) {
 				boolean bot2Turn = true;
-				while(bot2Turn) {
+				while(bot2Turn && faceSequence!=0) {
 					bot2Diff.getMove(playerTurn);
 					if(!playerTurn) {
 						pile.add(bot2Hand.remove(0));
@@ -201,11 +205,12 @@ public class GamePanel extends JPanel implements ActionListener,MouseListener{
 					else if(faceSequence == 0) {
 						bot2Turn = false;
 					}
+					faceSequence--;
 				}
 			}
 			if(!bot3.equals("None")) {
 				boolean bot3Turn = true;
-				while(bot3Turn) {
+				while(bot3Turn && faceSequence!=0) {
 					bot3Diff.getMove(playerTurn);
 					if(!playerTurn) {
 						pile.add(bot3Hand.remove(0));
@@ -217,21 +222,29 @@ public class GamePanel extends JPanel implements ActionListener,MouseListener{
 					else if(faceSequence == 0) {
 						bot3Turn = false;
 					}
+					faceSequence--;
 				}
 			}
 		}
 	}
 	public void mousePressed(MouseEvent e) {
 		JPanel clickedPanel = (JPanel) e.getSource();
+		JLayeredPane clicked2 = (JLayeredPane) e.getSource();
 		if(clickedPanel == bottomCardPanel) {
-			if(playerTurn == true) {
+			if(playerTurn == true && faceSequence!=0) {
+				ImageIcon card = playerHand.get(0).getImage();
+				JLabel cardPanel = new JLabel(card);
+				cardPanel.setBounds(50,50,50,50);
+				centerPanel.add(cardPanel);
 				pile.add(playerHand.remove(0));
 				slap = pile.isSlap();
-				playerTurn = false;
-				
+				faceSequence--;
+				if(faceSequence <= 0) {
+					playerTurn = false;
+				}
 			}
 		}
-		if(clickedPanel == centerPanel) {
+		if(clicked2 == centerPanel) {
 			if(slap == true) {
 				for(int i=0;i<pile.length();i++) {
 					playerHand.add(pile.remove(0));

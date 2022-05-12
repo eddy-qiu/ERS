@@ -45,21 +45,24 @@ public class MenuScreen extends JPanel implements ActionListener{
 		mainFrame = new JFrame("Egyptian Rat Screw");
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainPanel = new JPanel();
-		mainPanel.setBackground(Color.YELLOW);
+		mainPanel.setBackground(Color.GREEN);
 		mainPanel.setLayout(new GridLayout(3,3, 50, 25));
 
 		rightCardPanel = new JPanel();
 		rightCardPanel.setLayout(new BoxLayout(rightCardPanel, BoxLayout.Y_AXIS));
+		rightCardPanel.setBackground(Color.GREEN);
 		rightCardPanel.add(rightCard);
 		rightCardPanel.add(rightCardDiff);
 
 		leftCardPanel = new JPanel();
 		leftCardPanel.setLayout(new BoxLayout(leftCardPanel, BoxLayout.Y_AXIS));
+		leftCardPanel.setBackground(Color.GREEN);
 		leftCardPanel.add(leftCard);
 		leftCardPanel.add(leftCardDiff);
 
 		topCardPanel = new JPanel();
 		topCardPanel.setLayout(new BoxLayout(topCardPanel, BoxLayout.Y_AXIS));
+		topCardPanel.setBackground(Color.GREEN);
 		topCardPanel.add(topCard);
 		topCardPanel.add(topCardDiff);
 
@@ -89,13 +92,14 @@ public class MenuScreen extends JPanel implements ActionListener{
 		titlePanel = new JPanel();
 		titlePanel.setLayout(new GridLayout(3,1,0,0));
 		titlePanel.setBorder(BorderFactory.createEmptyBorder(0, 20, 10, 20));
+		titlePanel.setBackground(Color.GREEN);
 		titlePanel.add(empty1);
 		titlePanel.add(titleText);
 		titlePanel.add(start);
 
 		menuButtonPanel = new JPanel();
 		menuButtonPanel.setLayout(new GridLayout(2,1, 0, 0));
-		menuButtonPanel.setBackground(Color.YELLOW);
+		menuButtonPanel.setBackground(Color.GREEN);
 		menuButtonPanel.add(tutorialButton);
 		menuButtonPanel.add(ruleButton);
 
