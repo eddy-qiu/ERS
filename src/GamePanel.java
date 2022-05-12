@@ -46,6 +46,7 @@ public class GamePanel extends JPanel implements ActionListener,MouseListener{
 		rightCardPanel = new JPanel();
 		rightCardPanel.setLayout(new GridLayout(1,1,0,0));
 		rightCardPanel.add(rightCard);
+		rightCardPanel.add();
 		if(bot1.equals("None")) {
 			rightCardPanel.setVisible(false);
 		}
