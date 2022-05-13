@@ -18,7 +18,7 @@ public class GamePanel extends JPanel implements ActionListener,MouseListener{
 	Player bot1Diff,bot2Diff,bot3Diff;
 	int faceSequence;
 	public GamePanel(String bot1,String bot2,String bot3,int numPlayers) throws Exception{//remember that animations can be separate from some backend functionality
-
+		System.out.println("here");
 		ImageIcon cardBack = new ImageIcon("cards/cardBack.png");
 		ImageIcon rotatedCardBack = new ImageIcon("cards/cardBackSideways.png");
 		Image image1 = cardBack.getImage();
@@ -37,7 +37,7 @@ public class GamePanel extends JPanel implements ActionListener,MouseListener{
 		GameFrame.setPreferredSize(new Dimension(720,720));
 
 		mainPanel = new JPanel();
-		mainPanel.setBackground(Color.YELLOW);
+		mainPanel.setBackground(Color.GREEN);
 		mainPanel.setLayout(new GridLayout(3,3,10,35));
 
 		centerPanel = new JLayeredPane();
@@ -88,7 +88,6 @@ public class GamePanel extends JPanel implements ActionListener,MouseListener{
 		GameFrame.pack();
 		GameFrame.setVisible(true);
 
-		//start game
 		players = new PlayerPile[numPlayers+1];
 		FullDeck allCards = new FullDeck(); //create 52 cards, shuffle them into respective number of player decks
 		int cardsPerPlayer = 52/(numPlayers+1);
@@ -166,6 +165,8 @@ public class GamePanel extends JPanel implements ActionListener,MouseListener{
 		else if(bot3.equals("hard")) {
 			bot3Diff = new HardPlayer();
 		}
+	}
+	public void startGame(String bot1, String bot2, String bot3, int numPlayers) throws InterruptedException {//start game
 		if(!gameOver) {
 			while(playerTurn) {
 				//waits for playerTurn to turn false
@@ -257,6 +258,22 @@ public class GamePanel extends JPanel implements ActionListener,MouseListener{
 	}
 	public void actionPerformed(ActionEvent e) {
 		String eventName = e.getActionCommand();
+
+	}
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
 
 	}
 

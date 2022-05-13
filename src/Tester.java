@@ -37,32 +37,33 @@ public class Tester {
 		
 //	}
 	Tester() throws Exception{
-		JFrame frame = new JFrame();
-		JPanel panel = new JPanel();
-		Card one = new Card(4, "spades");
-		JLabel oneCard = new JLabel(one.getImage());
-		panel.add(oneCard);
-		Card two = new Card(5, "hearts");
-		JLabel twoCard = new JLabel(two.getImageSideways());
-		panel.add(twoCard);
-		Card three = new Card(13, "diamonds");
-		JLabel threeCard = new JLabel(three.getImageSideways());
-		panel.add(threeCard);
-		ImageIcon winBack = new ImageIcon("cards/cardBackWin.png");
-		Image image1 = winBack.getImage();
-		Image newimg1 = image1.getScaledInstance(120, 160, java.awt.Image.SCALE_SMOOTH);
-		winBack = new ImageIcon(newimg1);
-		JLabel winBackLabel = new JLabel(winBack);
-		panel.add(winBackLabel);
-		ImageIcon winBackSideways = new ImageIcon("cards/cardBackSidewaysWin.png");
-		Image image2 = winBackSideways.getImage();
-		Image newimg2 = image2.getScaledInstance(160, 120, java.awt.Image.SCALE_SMOOTH);
-		winBackSideways = new ImageIcon(newimg2);
-		JLabel winBackSidewaysLabel = new JLabel(winBackSideways);
-		panel.add(winBackSidewaysLabel);
-		frame.add(panel);
-		frame.pack();
-		frame.setVisible(true);
+//		JFrame frame = new JFrame();
+//		JPanel panel = new JPanel();
+//		Card one = new Card(4, "spades");
+//		JLabel oneCard = new JLabel(one.getImage());
+//		panel.add(oneCard);
+//		Card two = new Card(5, "hearts");
+//		JLabel twoCard = new JLabel(two.getImageSideways());
+//		panel.add(twoCard);
+//		Card three = new Card(13, "diamonds");
+//		JLabel threeCard = new JLabel(three.getImageSideways());
+//		panel.add(threeCard);
+//		ImageIcon winBack = new ImageIcon("cards/cardBackWin.png");
+//		Image image1 = winBack.getImage();
+//		Image newimg1 = image1.getScaledInstance(120, 160, java.awt.Image.SCALE_SMOOTH);
+//		winBack = new ImageIcon(newimg1);
+//		JLabel winBackLabel = new JLabel(winBack);
+//		panel.add(winBackLabel);
+//		ImageIcon winBackSideways = new ImageIcon("cards/cardBackSidewaysWin.png");
+//		Image image2 = winBackSideways.getImage();
+//		Image newimg2 = image2.getScaledInstance(160, 120, java.awt.Image.SCALE_SMOOTH);
+//		winBackSideways = new ImageIcon(newimg2);
+//		JLabel winBackSidewaysLabel = new JLabel(winBackSideways);
+//		panel.add(winBackSidewaysLabel);
+//		frame.add(panel);
+//		frame.pack();
+//		frame.setVisible(true);
+		GamePanel game = new GamePanel("none", "Easy", "Easy", 3);
 	}
 	private static void menuGUI() throws Exception {
 		JFrame.setDefaultLookAndFeelDecorated

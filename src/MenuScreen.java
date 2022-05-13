@@ -4,6 +4,7 @@ import java.awt.*;
 public class MenuScreen extends JPanel implements ActionListener{
 
 	JFrame mainFrame, ruleFrame;
+	GamePanel game;
 	JPanel mainPanel, titlePanel, rulePanel, 
 	rulebuttonPanel, ruleTextPanel, menuButtonPanel, 
 	rightCardPanel, leftCardPanel, topCardPanel;
@@ -212,12 +213,15 @@ public class MenuScreen extends JPanel implements ActionListener{
 				numPlayers--;
 			}
 			try {
-				GamePanel game = new GamePanel(bot1,bot2,bot3,numPlayers);
+				mainFrame.setVisible(false);
+				game = new GamePanel(bot1,bot2,bot3,numPlayers);
+				game.setVisible(true);
+				game.startGame(bot1, bot2, bot3, numPlayers);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			mainFrame.setVisible(false);
+			
 		}
 	}
 	private static void menuGUI() {
