@@ -44,6 +44,7 @@ public class GamePanel extends JPanel implements ActionListener,MouseListener{
 		centerPanel.addMouseListener(this);
 
 		rightCardPanel = new JPanel();
+		rightCardPanel.setBackground(Color.GREEN);
 		rightCardPanel.setLayout(new GridLayout(1,1,0,0));
 		rightCardPanel.add(rightCard);
 		if(bot1.equals("None")) {
@@ -51,6 +52,7 @@ public class GamePanel extends JPanel implements ActionListener,MouseListener{
 		}
 
 		leftCardPanel = new JPanel();
+		leftCardPanel.setBackground(Color.GREEN);
 		leftCardPanel.setLayout(new GridLayout(1,1,0,0));
 		leftCardPanel.add(leftCard);
 		if(bot3.equals("None")) {
@@ -58,6 +60,7 @@ public class GamePanel extends JPanel implements ActionListener,MouseListener{
 		}
 
 		topCardPanel = new JPanel();
+		topCardPanel.setBackground(Color.GREEN);
 		topCardPanel.setLayout(new GridLayout(1,1,0,0));
 		topCardPanel.add(topCard);
 		if(bot2.equals("None")) {
