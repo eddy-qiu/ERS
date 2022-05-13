@@ -167,63 +167,62 @@ public class GamePanel extends JPanel implements ActionListener,MouseListener{
 		}
 	}
 	public void startGame(String bot1, String bot2, String bot3, int numPlayers) throws InterruptedException {//start game
-		if(!gameOver) {
-			while(playerTurn) {
-				//waits for playerTurn to turn false
-			}
-			if(!bot1.equals("None")) {
-				boolean bot1Turn = true;
-				while(bot1Turn && faceSequence!=0) {
-					bot1Diff.getMove(playerTurn);
-					if(!playerTurn) {
-						ImageIcon card = bot1Hand.get(0).getImage();
-						JLabel cardPanel = new JLabel(card);
-						cardPanel.setBounds(50,50,50,50);
-						centerPanel.add(cardPanel);
-						pile.add(bot1Hand.remove(0));
+		while(!gameOver) {
+			if(!playerTurn) {
+				if(!bot1.equals("None")) {
+					boolean bot1Turn = true;
+					while(bot1Turn && faceSequence!=0) {
+						bot1Diff.getMove(playerTurn);
+						if(!playerTurn) {
+							ImageIcon card = bot1Hand.get(0).getImage();
+							JLabel cardPanel = new JLabel(card);
+							cardPanel.setBounds(50,50,50,50);
+							centerPanel.add(cardPanel);
+							pile.add(bot1Hand.remove(0));
+						}
+						if(pile.get(pile.length()-1).isFace()) {
+							faceSequence = pile.faceSequence();
+							bot1Turn = false;
+						}
+						else if(faceSequence == 0) {
+							bot1Turn = false;
+						}
+						faceSequence--;
 					}
-					if(pile.get(pile.length()-1).isFace()) {
-						faceSequence = pile.faceSequence();
-						bot1Turn = false;
-					}
-					else if(faceSequence == 0) {
-						bot1Turn = false;
-					}
-					faceSequence--;
 				}
-			}
-			if(!bot2.equals("None")) {
-				boolean bot2Turn = true;
-				while(bot2Turn && faceSequence!=0) {
-					bot2Diff.getMove(playerTurn);
-					if(!playerTurn) {
-						pile.add(bot2Hand.remove(0));
+				if(!bot2.equals("None")) {
+					boolean bot2Turn = true;
+					while(bot2Turn && faceSequence!=0) {
+						bot2Diff.getMove(playerTurn);
+						if(!playerTurn) {
+							pile.add(bot2Hand.remove(0));
+						}
+						if(pile.get(pile.length()-1).isFace()) {
+							faceSequence = pile.faceSequence();
+							bot2Turn = false;
+						}
+						else if(faceSequence == 0) {
+							bot2Turn = false;
+						}
+						faceSequence--;
 					}
-					if(pile.get(pile.length()-1).isFace()) {
-						faceSequence = pile.faceSequence();
-						bot2Turn = false;
-					}
-					else if(faceSequence == 0) {
-						bot2Turn = false;
-					}
-					faceSequence--;
 				}
-			}
-			if(!bot3.equals("None")) {
-				boolean bot3Turn = true;
-				while(bot3Turn && faceSequence!=0) {
-					bot3Diff.getMove(playerTurn);
-					if(!playerTurn) {
-						pile.add(bot3Hand.remove(0));
+				if(!bot3.equals("None")) {
+					boolean bot3Turn = true;
+					while(bot3Turn && faceSequence!=0) {
+						bot3Diff.getMove(playerTurn);
+						if(!playerTurn) {
+							pile.add(bot3Hand.remove(0));
+						}
+						if(pile.get(pile.length()-1).isFace()) {
+							faceSequence = pile.faceSequence();
+							bot3Turn = false;
+						}
+						else if(faceSequence == 0) {
+							bot3Turn = false;
+						}
+						faceSequence--;
 					}
-					if(pile.get(pile.length()-1).isFace()) {
-						faceSequence = pile.faceSequence();
-						bot3Turn = false;
-					}
-					else if(faceSequence == 0) {
-						bot3Turn = false;
-					}
-					faceSequence--;
 				}
 			}
 		}

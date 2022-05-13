@@ -169,9 +169,9 @@ public class MenuScreen extends JPanel implements ActionListener{
 	public String getDifficulty(int card) {
 		String Difficulty = "None";
 		if(card == 1){
-			Difficulty = (String) topCardDiff.getSelectedItem();
-		}else if(card == 2) {
 			Difficulty = (String) rightCardDiff.getSelectedItem();
+		}else if(card == 2) {
+			Difficulty = (String) topCardDiff.getSelectedItem();
 		}else if(card == 3) {
 			Difficulty = (String) leftCardDiff.getSelectedItem();
 		}
@@ -216,7 +216,7 @@ public class MenuScreen extends JPanel implements ActionListener{
 				mainFrame.setVisible(false);
 				game = new GamePanel(bot1,bot2,bot3,numPlayers);
 				game.setVisible(true);
-				game.startGame(bot1, bot2, bot3, numPlayers);
+				//game.startGame(bot1, bot2, bot3, numPlayers);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
