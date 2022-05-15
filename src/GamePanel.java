@@ -12,7 +12,7 @@ public class GamePanel extends JPanel implements ActionListener,MouseListener{
 	JLayeredPane centerPanel;
 	JLabel topCard, leftCard, rightCard, bottomCard, empty1, empty2, empty3, empty4, topCardAmount,
 	leftCardAmount,rightCardAmount,bottomCardAmount;
-	Boolean playerTurn=true,slap,gameOver=false;
+	Boolean playerTurn=true,slap=false,gameOver=false;
 	CenterPile pile;
 	PlayerPile players[],playerHand,bot1Hand,bot2Hand,bot3Hand;
 	Player bot1Diff,bot2Diff,bot3Diff;
@@ -84,7 +84,7 @@ public class GamePanel extends JPanel implements ActionListener,MouseListener{
 		mainPanel.add(centerPanel);
 		mainPanel.add(rightCardPanel);
 		mainPanel.add(empty3);
-		mainPanel.add(bottomCard);
+		mainPanel.add(bottomCardPanel);
 		mainPanel.add(empty4);
 
 		GameFrame.setContentPane(mainPanel);
@@ -170,7 +170,7 @@ public class GamePanel extends JPanel implements ActionListener,MouseListener{
 		}
 	}
 	public void startGame(String bot1, String bot2, String bot3, int numPlayers) throws InterruptedException {//start game
-		while(!gameOver) {
+	
 			if(!playerTurn) {
 				if(!bot1.equals("None")) {
 					boolean bot1Turn = true;
@@ -229,16 +229,31 @@ public class GamePanel extends JPanel implements ActionListener,MouseListener{
 				}
 			}
 		}
-	}
+	
 	public void mousePressed(MouseEvent e) {
-		JPanel clickedPanel = (JPanel) e.getSource();
-		JLayeredPane clicked2 = (JLayeredPane) e.getSource();
+		System.out.println("clickssssssss");
+		JPanel clickedPanel = null;
+		try {
+			clickedPanel = (JPanel) e.getSource();
+		}
+		catch(Exception e1){
+			
+		}
+		JLayeredPane clicked2 = null;
+		try {
+			clicked2 = (JLayeredPane) e.getSource();
+		}
+		catch(Exception e2) {
+			
+		}
 		if(clickedPanel == bottomCardPanel) {
 			if(playerTurn == true && faceSequence!=0) {
+				System.out.println("clicked");
 				ImageIcon card = playerHand.get(0).getImage();
 				JLabel cardPanel = new JLabel(card);
 				cardPanel.setBounds(50,50,50,50);
 				centerPanel.add(cardPanel);
+				repaint();
 				pile.add(playerHand.remove(0));
 				slap = pile.isSlap();
 				faceSequence--;
