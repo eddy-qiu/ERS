@@ -16,9 +16,19 @@ public class GamePanel extends JPanel implements ActionListener,MouseListener{
 	CenterPile pile = new CenterPile();
 	PlayerPile players[],playerHand,bot1Hand;
 	Player bot1Diff;
-	int faceSequence,numPlayer;
+	int faceSequence=0,numPlayer;
 	String b1;
-
+	Timer timer1 = new Timer(1000, new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			ImageIcon card = bot1Hand.get(0).getImage();
+			JLabel cardPanel = new JLabel(card);
+			int x = (int)(Math.random()*50);
+			int y = (int)(Math.random()*30);
+			cardPanel.setBounds(x,y,140,180);
+			centerPanel.add(cardPanel);
+			centerPanel.moveToFront(cardPanel);
+		}
+	});
 	public GamePanel(String bot1) throws Exception{//remember that animations can be separate from some backend functionality
 		b1 = bot1;
 		System.out.println("here");
@@ -99,7 +109,7 @@ public class GamePanel extends JPanel implements ActionListener,MouseListener{
 			j++;
 		}
 		if(bot1.equals("easy")) { //set the difficulty for the bots
-			;
+
 		}
 		else if(bot1.equals("medium")) {
 			bot1Diff = new MediumPlayer();
@@ -111,34 +121,27 @@ public class GamePanel extends JPanel implements ActionListener,MouseListener{
 
 	public void startGame(String bot1) throws InterruptedException {//start game
 		if(!playerTurn) {
-			Timer timer1 = new Timer(1000, new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					ImageIcon card = bot1Hand.get(0).getImage();
-					JLabel cardPanel = new JLabel(card);
-					int x = (int)(Math.random()*50);
-					int y = (int)(Math.random()*30);
-					cardPanel.setBounds(x,y,140,180);
-					centerPanel.add(cardPanel);
-					centerPanel.moveToFront(cardPanel);
-				}
-			});
 			repaint();
 			timer1.setRepeats(false);
 			timer1.start();
 			pile.add(bot1Hand.remove(0));
-		}
-		if(pile.get(pile.length()-1).isFace()) {
-			faceSequence = pile.faceSequence();
-			playerTurn = true;
-		}
-		else if(faceSequence == 0) {
-			playerTurn = true;
-		}
-		else {
-			faceSequence--;
-			startGame(b1);
+			slap = pile.isSlap();
+			if(pile.get(pile.length()-1).isFace()) {
+				faceSequence = pile.faceSequence();
+				System.out.println("cpu:"+pile.faceSequence());
+				playerTurn = true;
+			}
+			else if(faceSequence == 0) {
+				playerTurn = true;
+			}
+			else {
+				faceSequence--;
+				timer1.stop();
+				startGame(b1);
 
+			}
 		}
+
 	}
 
 
@@ -184,6 +187,7 @@ public class GamePanel extends JPanel implements ActionListener,MouseListener{
 				}
 				if(pile.get(pile.length()-1).isFace()) {
 					faceSequence = pile.faceSequence();
+					System.out.println(pile.faceSequence());
 					playerTurn = false;
 					try {
 						this.startGame(b1);
@@ -204,24 +208,28 @@ public class GamePanel extends JPanel implements ActionListener,MouseListener{
 		}
 		if(clicked2 == centerPanel) {
 			System.out.println("clicked2");
+			slap = pile.isSlap();
 			if(slap == true) {
+				System.out.println("slapped");
 				for(int i=0;i<pile.length();i++) {
 					playerHand.add(pile.remove(0));
 				}
-			}
-			centerPanel.removeAll();
-			repaint();
-			playerTurn = true;
-		}
-		else { //burn
-			pile.addToBack(playerHand.remove(0));
-			if(playerHand.length()==0) {
-				bottomCardPanel.remove(bottomCard);
-				JLabel gameOverText = new JLabel("Game Over!");
-				bottomCardPanel.add(gameOverText);
+				centerPanel.removeAll();
 				repaint();
+				playerTurn = true;
+			}
+			else { //burn
+				System.out.println("burned");
+				pile.addToBack(playerHand.remove(0));
+				if(playerHand.length()==0) {
+					bottomCardPanel.remove(bottomCard);
+					JLabel gameOverText = new JLabel("Game Over!");
+					bottomCardPanel.add(gameOverText);
+					repaint();
+				}
 			}
 		}
+
 	}
 
 	public void actionPerformed(ActionEvent e) {
