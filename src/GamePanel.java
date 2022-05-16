@@ -187,6 +187,10 @@ public class GamePanel extends JPanel implements ActionListener,MouseListener{
 					bottomCardPanel.add(gameOverText);
 					repaint();
 				}
+				if(pile.get(0).isFace()) {
+					faceSequence = pile.faceSequence();
+					playerTurn = false;
+				}
 				if(faceSequence <= 0) {
 					faceSequence = 0;
 					playerTurn = false;

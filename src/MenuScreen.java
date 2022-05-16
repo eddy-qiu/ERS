@@ -35,7 +35,6 @@ public class MenuScreen extends JPanel implements ActionListener{
 		bottomCard = new JLabel(cardBack);
 
 		String[] Difficulty = {
-				"None",
 				"easy", 
 				"medium", 
 				"hard" 
@@ -209,7 +208,7 @@ public class MenuScreen extends JPanel implements ActionListener{
 		
 	}
 	public String getDifficulty(int card) {
-		String Difficulty = "None";
+		String Difficulty = "easy";
 		if(card == 1){
 			Difficulty = (String) topCardDiff.getSelectedItem();
 		}
