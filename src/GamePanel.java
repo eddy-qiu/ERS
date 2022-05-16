@@ -90,7 +90,7 @@ public class GamePanel extends JPanel implements ActionListener,MouseListener{
 			Card card = allCards.remove(0);
 			players[1].add(card);
 		}
-		
+
 		int j = 0;
 		playerHand = players[j];
 		j++;
@@ -110,49 +110,41 @@ public class GamePanel extends JPanel implements ActionListener,MouseListener{
 	}
 
 	public void startGame(String bot1) throws InterruptedException {//start game
-	
-			if(!playerTurn) {
-				if(!bot1.equals("None")) {
-					boolean bot1Turn = true;
-					while(bot1Turn) {
-						bot1Diff.getMove(playerTurn);
-						if(!playerTurn) {
-							Timer timer1 = new Timer(1000, new ActionListener() {
-								public void actionPerformed(ActionEvent e) {
-									ImageIcon card = bot1Hand.get(0).getImage();
-									JLabel cardPanel = new JLabel(card);
-									int x = (int)(Math.random()*50);
-									int y = (int)(Math.random()*30);
-									cardPanel.setBounds(x,y,140,180);
-									centerPanel.add(cardPanel);
-									centerPanel.moveToFront(cardPanel);
-								}
-							});
-							repaint();
-							timer1.setRepeats(false);
-							timer1.start();
-							pile.add(bot1Hand.remove(0));
-						}
-						if(pile.get(pile.length()-1).isFace()) {
-							faceSequence = pile.faceSequence();
-							bot1Turn = false;
-						}
-						else if(faceSequence == 0) {
-							bot1Turn = false;
-						}
-						faceSequence--;
-						
+
+		if(!playerTurn) {
+			if(!bot1.equals("None")) {
+				boolean bot1Turn = true;
+				while(bot1Turn) {
+					bot1Diff.getMove(playerTurn);
+					if(!playerTurn) {
+						Timer timer1 = new Timer(1000, new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								ImageIcon card = bot1Hand.get(0).getImage();
+								JLabel cardPanel = new JLabel(card);
+								int x = (int)(Math.random()*50);
+								int y = (int)(Math.random()*30);
+								cardPanel.setBounds(x,y,140,180);
+								centerPanel.add(cardPanel);
+								centerPanel.moveToFront(cardPanel);
+							}
+						});
+						repaint();
+						timer1.setRepeats(false);
+						timer1.start();
+						pile.add(bot1Hand.remove(0));
+					}
 					if(pile.get(pile.length()-1).isFace()) {
 						faceSequence = pile.faceSequence();
 						bot1Turn = false;
+						playerTurn = true;
 					}
 					else if(faceSequence == 0) {
 						bot1Turn = false;
+						playerTurn = true;
 					}
 					faceSequence--;
-				}
+					}
 			}
-			playerTurn = true;
 		}
 	}
 
@@ -214,36 +206,40 @@ public class GamePanel extends JPanel implements ActionListener,MouseListener{
 					playerHand.add(pile.remove(0));
 				}
 			}
-			else { //burn
-
-				if(playerHand.length()==0) {
-					bottomCardPanel.remove(bottomCard);
-					JLabel gameOverText = new JLabel("Game Over!");
-					bottomCardPanel.add(gameOverText);
-					repaint();
-				}
+			centerPanel.removeAll();
+			repaint();
+			playerTurn = true;
+		}
+		else { //burn
+			pile.addToBack(playerHand.remove(0));
+			if(playerHand.length()==0) {
+				bottomCardPanel.remove(bottomCard);
+				JLabel gameOverText = new JLabel("Game Over!");
+				bottomCardPanel.add(gameOverText);
+				repaint();
 			}
 		}
 	}
-	public void actionPerformed(ActionEvent e) {
-		String eventName = e.getActionCommand();
 
-	}
-	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
+public void actionPerformed(ActionEvent e) {
+	String eventName = e.getActionCommand();
 
-	}
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
+}
+public void mouseClicked(MouseEvent e) {
+	// TODO Auto-generated method stub
 
-	}
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
+}
+public void mouseReleased(MouseEvent e) {
+	// TODO Auto-generated method stub
 
-	}
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
+}
+public void mouseEntered(MouseEvent e) {
+	// TODO Auto-generated method stub
 
-	}
+}
+public void mouseExited(MouseEvent e) {
+	// TODO Auto-generated method stub
+
+}
 
 }

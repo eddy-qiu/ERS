@@ -8,6 +8,9 @@ public class PlayerPile extends Deck{
 	public void add(Card card) {
 		Cards.add(card);
 	}
+	public void addToBack(Card card) {
+		Cards.add(Cards.size()-1,card);
+	}
 	public Card remove(int index) {
 		return Cards.remove(index);
 	}
