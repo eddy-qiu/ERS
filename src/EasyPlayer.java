@@ -18,7 +18,6 @@ public class EasyPlayer extends Player{ //general template for computer player, 
 		return null;
 	}
 	public String getMove(boolean playerTurn) throws InterruptedException {
-		
 		return "Play";
 	}
 	@Override
