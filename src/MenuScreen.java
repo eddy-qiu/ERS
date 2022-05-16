@@ -15,7 +15,7 @@ public class MenuScreen extends JPanel implements ActionListener{
 	bottomCard, empty1, empty2, empty3, empty4, empty5;
 	JComboBox topCardDiff;
 	ImageIcon Rule1, Rule2, Rule3, Tutorial1, Tutorial2, Tutorial3 ;
-	private int rulePage = 1, tutorialPage = 1;
+	private int rulePage = 0, tutorialPage = 0;
 
 	public MenuScreen(){
 		ImageIcon cardBack = new ImageIcon("cards/cardBack.png");
@@ -160,7 +160,7 @@ public class MenuScreen extends JPanel implements ActionListener{
 		tutorialnextPage.addActionListener(this);
 		
 		Tutorial1 = new ImageIcon("Rules and Tutorial/TutorialImg1.png");
-//		Tutorial2 = new ImageIcon("Rules and Tutorial/RuleImg2.png");
+		Tutorial2 = new ImageIcon("Rules and Tutorial/TutorialImg2.png");
 //		Tutorial3 = new ImageIcon("Rules and Tutorial/RuleImg3.png");
 		
 		Image image4 = Tutorial1.getImage();
@@ -204,9 +204,6 @@ public class MenuScreen extends JPanel implements ActionListener{
 		tutorialFrame.pack();
 		tutorialFrame.setVisible(false);
 		
-		
-		
-		
 	}
 	public String getDifficulty(int card) {
 		String Difficulty = "None";
@@ -232,11 +229,26 @@ public class MenuScreen extends JPanel implements ActionListener{
 				ruleImage.setIcon(Rule3);
 				rulePage = 0;
 			}
+			if(tutorialPage == 0) {
+				tutorialImage.setIcon(Tutorial1);
+				tutorialPage++;
+			}else if(tutorialPage == 1){
+				tutorialImage.setIcon(Tutorial2);
+				tutorialPage++;
+			}else if(tutorialPage == 2) {
+				tutorialImage.setIcon(Tutorial3);
+				tutorialPage = 0;
+			}
+			
 		}
 		else if(eventName.equals("Back to menu")) {
 			ruleFrame.dispose();
 			tutorialFrame.dispose();
 			mainFrame.setVisible(true);
+			rulePage = 0;
+			ruleImage.setIcon(Rule1);
+			tutorialPage = 0;
+			tutorialImage.setIcon(Tutorial1);
 		}
 		else if(eventName.contentEquals("Game")){
 			ruleFrame.dispose();
@@ -257,17 +269,10 @@ public class MenuScreen extends JPanel implements ActionListener{
 			ruleFrame.setVisible(false);
 			mainFrame.setVisible(false);
 			tutorialFrame.setVisible(true);
+//			if(eventName.contentEquals("Next")) {
+//				
+//			}
 			
-			if(tutorialPage == 0) {
-				tutorialImage.setIcon(Tutorial1);
-				tutorialPage++;
-			}else if(tutorialPage == 1){
-				tutorialImage.setIcon(Tutorial2);
-				tutorialPage++;
-			}else if(tutorialPage == 2) {
-				tutorialImage.setIcon(Tutorial3);
-				tutorialPage = 0;
-			}
 		}
 	}
 	private static void menuGUI() {
