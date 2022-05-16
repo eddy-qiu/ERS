@@ -13,7 +13,7 @@ public class GamePanel extends JPanel implements ActionListener,MouseListener{
 	JLabel topCard, leftCard, rightCard, bottomCard, empty1, empty2, empty3, empty4, topCardAmount,
 	leftCardAmount,rightCardAmount,bottomCardAmount;
 	Boolean playerTurn=true,slap=false,gameOver=false;
-	CenterPile pile;
+	CenterPile pile = new CenterPile();
 	PlayerPile players[],playerHand,bot1Hand,bot2Hand,bot3Hand;
 	Player bot1Diff,bot2Diff,bot3Diff;
 	int faceSequence;
@@ -68,6 +68,7 @@ public class GamePanel extends JPanel implements ActionListener,MouseListener{
 		}
 
 		bottomCardPanel = new JPanel();
+		bottomCardPanel.setBackground(Color.GREEN);
 		bottomCardPanel.setLayout(new GridLayout(1,1,0,0));
 		bottomCardPanel.add(bottomCard);
 		bottomCardPanel.addMouseListener(this);
@@ -231,7 +232,6 @@ public class GamePanel extends JPanel implements ActionListener,MouseListener{
 		}
 	
 	public void mousePressed(MouseEvent e) {
-		System.out.println("clickssssssss");
 		JPanel clickedPanel = null;
 		try {
 			clickedPanel = (JPanel) e.getSource();
@@ -247,11 +247,12 @@ public class GamePanel extends JPanel implements ActionListener,MouseListener{
 			
 		}
 		if(clickedPanel == bottomCardPanel) {
-			if(playerTurn == true && faceSequence!=0) {
+			
+			if(playerTurn == true) {
 				System.out.println("clicked");
 				ImageIcon card = playerHand.get(0).getImage();
 				JLabel cardPanel = new JLabel(card);
-				cardPanel.setBounds(50,50,50,50);
+				cardPanel.setBounds(40,40,140,180);
 				centerPanel.add(cardPanel);
 				repaint();
 				pile.add(playerHand.remove(0));
@@ -263,6 +264,7 @@ public class GamePanel extends JPanel implements ActionListener,MouseListener{
 			}
 		}
 		if(clicked2 == centerPanel) {
+			System.out.println("clicked2");
 			if(slap == true) {
 				for(int i=0;i<pile.length();i++) {
 					playerHand.add(pile.remove(0));
