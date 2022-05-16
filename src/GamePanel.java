@@ -120,10 +120,20 @@ public class GamePanel extends JPanel implements ActionListener,MouseListener{
 					while(bot1Turn && faceSequence!=0) {
 						bot1Diff.getMove(playerTurn);
 						if(!playerTurn) {
-							ImageIcon card = bot1Hand.get(0).getImage();
-							JLabel cardPanel = new JLabel(card);
-							cardPanel.setBounds(50,50,50,50);
-							centerPanel.add(cardPanel);
+							Timer timer1 = new Timer(1000, new ActionListener() {
+								public void actionPerformed(ActionEvent e) {
+									ImageIcon card = bot1Hand.get(0).getImage();
+									JLabel cardPanel = new JLabel(card);
+									int x = (int)(Math.random()*50);
+									int y = (int)(Math.random()*30);
+									cardPanel.setBounds(x,y,140,180);
+									centerPanel.add(cardPanel);
+									centerPanel.moveToFront(cardPanel);
+								}
+							});
+							repaint();
+							timer1.setRepeats(false);
+							timer1.start();
 							pile.add(bot1Hand.remove(0));
 						}
 						if(pile.get(pile.length()-1).isFace()) {
