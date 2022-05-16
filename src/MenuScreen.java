@@ -14,7 +14,7 @@ public class MenuScreen extends JPanel implements ActionListener{
 	JLabel titleText, ruleImage,tutorialImage, topCard, leftCard, rightCard,
 	bottomCard, empty1, empty2, empty3, empty4, empty5;
 	JComboBox topCardDiff;
-	ImageIcon Rule1, Rule2, Rule3, Tutorial1, Tutorial2, Tutorial3 ;
+	ImageIcon Rule1, Rule2, Rule3, Tutorial1, Tutorial2, Tutorial3, Tutorial4, Tutorial5 ;
 	private int rulePage = 0, tutorialPage = 0;
 
 	public MenuScreen(){
@@ -158,9 +158,11 @@ public class MenuScreen extends JPanel implements ActionListener{
 		tutorialnextPage = new JButton("Next");
 		tutorialnextPage.addActionListener(this);
 		
-		Tutorial1 = new ImageIcon("Rules and Tutorial/TutorialImg1.png");
+		Tutorial1 = new ImageIcon("Rules and Tutorial/TutorialImg1-2.png");
 		Tutorial2 = new ImageIcon("Rules and Tutorial/TutorialImg2.png");
-//		Tutorial3 = new ImageIcon("Rules and Tutorial/RuleImg3.png");
+		Tutorial3 = new ImageIcon("Rules and Tutorial/TutorialImg3.png");
+		Tutorial4 = new ImageIcon("Rules and Tutorial/TutorialImg4.png");
+		Tutorial5 = new ImageIcon("Rules and Tutorial/TutorialImg5.png");
 		
 		Image image4 = Tutorial1.getImage();
 		Image newimg4 = image4.getScaledInstance(720, 360, java.awt.Image.SCALE_SMOOTH);
@@ -232,10 +234,16 @@ public class MenuScreen extends JPanel implements ActionListener{
 				tutorialImage.setIcon(Tutorial2);
 				tutorialPage++;
 			}else if(tutorialPage == 2) {
-				tutorialImage.setIcon(Tutorial3);
+				tutorialImage.setIcon(Tutorial3);	
+				tutorialPage++;
+			}else if(tutorialPage == 3) {
+				tutorialImage.setIcon(Tutorial4);
+				tutorialPage++;
+			}else if(tutorialPage == 4) {
+				tutorialImage.setIcon(Tutorial5);
+				tutorialPage++;
 				tutorialPage = 0;
 			}
-			
 		}
 		else if(eventName.equals("Back to menu")) {
 			ruleFrame.dispose();
