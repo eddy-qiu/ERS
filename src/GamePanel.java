@@ -48,9 +48,6 @@ public class GamePanel extends JPanel implements ActionListener,MouseListener{
 		topCardPanel.setBackground(Color.GREEN);
 		topCardPanel.setLayout(new GridLayout(1,1,0,0));
 		topCardPanel.add(topCard);
-		if(bot1.equals("None")) {
-			topCardPanel.setVisible(false);
-		}
 
 		bottomCardPanel = new JPanel();
 		bottomCardPanel.setBackground(Color.GREEN);
@@ -117,7 +114,7 @@ public class GamePanel extends JPanel implements ActionListener,MouseListener{
 			if(!playerTurn) {
 				if(!bot1.equals("None")) {
 					boolean bot1Turn = true;
-					while(bot1Turn && faceSequence!=0) {
+					while(bot1Turn) {
 						bot1Diff.getMove(playerTurn);
 						if(!playerTurn) {
 							Timer timer1 = new Timer(1000, new ActionListener() {
