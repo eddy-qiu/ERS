@@ -260,7 +260,6 @@ public class MenuScreen extends JPanel implements ActionListener{
 			try {
 				mainFrame.setVisible(false);
 				game = new GamePanel(bot1,bot2,bot3,numPlayers);
-				game.setVisible(true);
 				game.startGame(bot1, bot2, bot3, numPlayers);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
