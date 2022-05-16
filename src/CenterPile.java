@@ -11,7 +11,7 @@ public class CenterPile extends Deck{
 		Cards.add(card);
 	}
 	public void addToBack(Card card) {
-		Cards.add(Cards.size()-1,card);
+		Cards.add(0,card);
 	}
 	public Card remove(int index) {
 		return Cards.remove(index);
@@ -23,7 +23,7 @@ public class CenterPile extends Deck{
 		if(Cards.get(Cards.size()-1).getValue() == Cards.get(Cards.size()-2).getValue()) {
 			return true;
 		}
-		if(Cards.get(Cards.size()-1).getValue() == Cards.get(Cards.size()-3).getValue()) {
+		if(Cards.size() > 2 && Cards.get(Cards.size()-1).getValue() == Cards.get(Cards.size()-3).getValue()) {
 			return true;
 		}
 		if((Cards.get(Cards.size()-1).getValue() == 12 && Cards.get(Cards.size()-2).getValue() == 13) || (Cards.get(Cards.size()-1).getValue() == 13 && Cards.get(Cards.size()-2).getValue() == 12)) {
@@ -32,11 +32,11 @@ public class CenterPile extends Deck{
 		return false;
 	}
 	public int faceSequence() {
-		if(faceRemaining != 0) {
-			faceRemaining -= 1;
-			return faceRemaining;
-		}
-		else if(sequenced == false) {
+//		if(faceRemaining != 0) {
+//			faceRemaining -= 1;
+//			return faceRemaining;
+//		}
+//		 if(sequenced == false) {
 			if(Cards.get(Cards.size()-1).getValue() == 1) {
 				faceRemaining = 4;
 				sequenced = true;
@@ -60,8 +60,8 @@ public class CenterPile extends Deck{
 			faceRemaining = 0;
 			return 0;
 		}
-		return 0;
-	}
+//		return 0;
+//	}
 	public int length() {
 		return Cards.size();
 	}
