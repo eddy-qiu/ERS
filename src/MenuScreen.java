@@ -3,16 +3,18 @@ import java.awt.event.*;
 import java.awt.*; 
 public class MenuScreen extends JPanel implements ActionListener{
 
-	JFrame mainFrame, ruleFrame;
+	JFrame mainFrame, ruleFrame, tutorialFrame;
 	GamePanel game;
 	JPanel mainPanel, titlePanel, rulePanel, 
 	rulebuttonPanel, ruleTextPanel, menuButtonPanel, 
-	rightCardPanel, leftCardPanel, topCardPanel;
-	JButton start, tutorialButton, ruleButton, nextPage, backToMain;
+	rightCardPanel, leftCardPanel, topCardPanel,
+	tutorialPanel, tutorialTextPanel, tutorialButtonPanel;
+	JButton start, tutorialButton, ruleButton, nextPage,
+	backToMain, tutorialbackToMain, tutorialnextPage;
 	JLabel titleText, ruleImage, topCard, leftCard, rightCard,
 	bottomCard, empty1, empty2, empty3;
 	JComboBox topCardDiff, rightCardDiff, leftCardDiff;
-	ImageIcon Rule1, Rule2, Rule3;
+	ImageIcon Rule1, Rule2, Rule3, Tutorial1, Tutorial2, Tutorial3 ;
 	private int rulePage = 1;
 
 	public MenuScreen(){
@@ -115,6 +117,7 @@ public class MenuScreen extends JPanel implements ActionListener{
 		mainPanel.add(menuButtonPanel);
 
 
+		
 		//Rule Panel
 		ruleFrame = new JFrame("Rules");
 		ruleFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -154,6 +157,39 @@ public class MenuScreen extends JPanel implements ActionListener{
 		rulebuttonPanel.add(backToMain);
 		rulePanel.add(rulebuttonPanel, BorderLayout.PAGE_END);
 
+		
+		//Tutorial Panel
+		tutorialFrame = new JFrame("Tutorial");
+		tutorialFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		tutorialPanel = new JPanel();
+		tutorialPanel.setBackground(Color.GREEN);
+		tutorialPanel.setLayout(new GridLayout(2,1,0,0));
+				
+		tutorialbackToMain = new JButton("Back to menu");
+		tutorialbackToMain.addActionListener(this);
+
+		tutorialnextPage = new JButton("Next");
+		tutorialnextPage.addActionListener(this);
+				
+//		Tutorial1 = new ImageIcon("Rules and Tutorial/RuleImg1.png");
+//		Tutorial2 = new ImageIcon("Rules and Tutorial/RuleImg2.png");
+//		Tutorial3 = new ImageIcon("Rules and Tutorial/RuleImg3.png");
+		
+		tutorialTextPanel = new JPanel();
+		tutorialTextPanel.setLayout(new BoxLayout(tutorialTextPanel, BoxLayout.Y_AXIS));
+		
+		
+		tutorialButtonPanel = new JPanel();
+		tutorialButtonPanel.setLayout(new BoxLayout(tutorialButtonPanel, BoxLayout.Y_AXIS));
+		rulebuttonPanel.setBorder(BorderFactory.createEmptyBorder(0, 20, 10, 20));
+		tutorialbackToMain.setAlignmentX(CENTER_ALIGNMENT);
+		tutorialnextPage.setAlignmentX(CENTER_ALIGNMENT);
+		tutorialButtonPanel.add(tutorialnextPage);
+		tutorialButtonPanel.add(tutorialbackToMain);
+		tutorialPanel.add(tutorialButtonPanel, BorderLayout.PAGE_END);
+				
+		
+		
 		mainPanel.setBorder(BorderFactory.
 				createEmptyBorder(25, 40, 25, 40));
 		rulePanel.setBorder(BorderFactory.
@@ -165,6 +201,14 @@ public class MenuScreen extends JPanel implements ActionListener{
 		ruleFrame.setContentPane(rulePanel);
 		ruleFrame.pack();
 		ruleFrame.setVisible(false);
+		
+		tutorialFrame.setContentPane(tutorialPanel);
+		tutorialFrame.pack();
+		tutorialFrame.setVisible(false);
+		
+		
+		
+		
 	}
 	public String getDifficulty(int card) {
 		String Difficulty = "None";
@@ -181,7 +225,8 @@ public class MenuScreen extends JPanel implements ActionListener{
 		String eventName = event.getActionCommand();
 		if(eventName.equals("Rules")) {
 			ruleFrame.setVisible(true);
-//			smainFrame.setVisible(false);
+			mainFrame.setVisible(false);
+			tutorialFrame.setVisible(false);
 		}else if(eventName.equals("Next")) {
 			if(rulePage == 0) {
 				ruleImage.setIcon(Rule1);
@@ -222,6 +267,10 @@ public class MenuScreen extends JPanel implements ActionListener{
 				e.printStackTrace();
 			}
 			
+		}else if(eventName.equals("Tutorial")) {
+			ruleFrame.setVisible(false);
+			mainFrame.setVisible(false);
+			tutorialFrame.setVisible(true);
 		}
 	}
 	private static void menuGUI() {
