@@ -63,7 +63,7 @@ public class Tester {
 //		frame.add(panel);
 //		frame.pack();
 //		frame.setVisible(true);
-		GamePanel game = new GamePanel("none", "Easy", "Easy", 3);
+		
 	}
 	private static void menuGUI() throws Exception {
 		JFrame.setDefaultLookAndFeelDecorated

@@ -16,6 +16,7 @@ public class MediumPlayer extends Player{ //general template for computer player
 		if(!playerTurn) {
 			TimeUnit.SECONDS.sleep(3/2);
 		}
+		return null;
 	}
 	@Override
 	String getMove() {

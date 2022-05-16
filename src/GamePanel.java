@@ -16,8 +16,13 @@ public class GamePanel extends JPanel implements ActionListener,MouseListener{
 	CenterPile pile = new CenterPile();
 	PlayerPile players[],playerHand,bot1Hand,bot2Hand,bot3Hand;
 	Player bot1Diff,bot2Diff,bot3Diff;
-	int faceSequence;
+	int faceSequence,numPlayer;
+	String b1,b2,b3;
 	public GamePanel(String bot1,String bot2,String bot3,int numPlayers) throws Exception{//remember that animations can be separate from some backend functionality
+		b1=bot1;
+		b2=bot2;
+		b3=bot3;
+		numPlayer = numPlayers;
 		System.out.println("here");
 		ImageIcon cardBack = new ImageIcon("cards/cardBack.png");
 		ImageIcon rotatedCardBack = new ImageIcon("cards/cardBackSideways.png");
@@ -171,95 +176,153 @@ public class GamePanel extends JPanel implements ActionListener,MouseListener{
 		}
 	}
 	public void startGame(String bot1, String bot2, String bot3, int numPlayers) throws InterruptedException {//start game
-	
-			if(!playerTurn) {
-				if(!bot1.equals("None")) {
-					boolean bot1Turn = true;
-					while(bot1Turn && faceSequence!=0) {
-						bot1Diff.getMove(playerTurn);
-						if(!playerTurn) {
-							ImageIcon card = bot1Hand.get(0).getImage();
-							JLabel cardPanel = new JLabel(card);
-							cardPanel.setBounds(50,50,50,50);
-							centerPanel.add(cardPanel);
-							pile.add(bot1Hand.remove(0));
-						}
-						if(pile.get(pile.length()-1).isFace()) {
-							faceSequence = pile.faceSequence();
-							bot1Turn = false;
-						}
-						else if(faceSequence == 0) {
-							bot1Turn = false;
-						}
-						faceSequence--;
+
+		if(!playerTurn) {
+			if(!bot1.equals("None")) {
+				boolean bot1Turn = true;
+				while(bot1Turn) {
+					bot1Diff.getMove(playerTurn);
+					if(!playerTurn) {
+						Timer timer1 = new Timer(1000, new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								ImageIcon card = bot1Hand.get(0).getImage();
+								JLabel cardPanel = new JLabel(card);
+								int x = (int)(Math.random()*50);
+								int y = (int)(Math.random()*30);
+								cardPanel.setBounds(x,y,140,180);
+								centerPanel.add(cardPanel);
+								centerPanel.moveToFront(cardPanel);
+							}
+						});
+						repaint();
+						timer1.setRepeats(false);
+						timer1.start();
+						pile.add(bot1Hand.remove(0));
 					}
-				}
-				if(!bot2.equals("None")) {
-					boolean bot2Turn = true;
-					while(bot2Turn && faceSequence!=0) {
-						bot2Diff.getMove(playerTurn);
-						if(!playerTurn) {
-							pile.add(bot2Hand.remove(0));
-						}
-						if(pile.get(pile.length()-1).isFace()) {
-							faceSequence = pile.faceSequence();
-							bot2Turn = false;
-						}
-						else if(faceSequence == 0) {
-							bot2Turn = false;
-						}
-						faceSequence--;
+					if(pile.get(pile.length()-1).isFace()) {
+						faceSequence = pile.faceSequence();
+						bot1Turn = false;
 					}
-				}
-				if(!bot3.equals("None")) {
-					boolean bot3Turn = true;
-					while(bot3Turn && faceSequence!=0) {
-						bot3Diff.getMove(playerTurn);
-						if(!playerTurn) {
-							pile.add(bot3Hand.remove(0));
-						}
-						if(pile.get(pile.length()-1).isFace()) {
-							faceSequence = pile.faceSequence();
-							bot3Turn = false;
-						}
-						else if(faceSequence == 0) {
-							bot3Turn = false;
-						}
-						faceSequence--;
+					else if(faceSequence == 0) {
+						bot1Turn = false;
 					}
+					faceSequence--;
 				}
 			}
+			if(!bot2.equals("None")) {
+				boolean bot2Turn = true;
+				while(bot2Turn) {
+					bot2Diff.getMove(playerTurn);
+					if(!playerTurn) {
+						Timer timer2 = new Timer(2000, new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								ImageIcon card = bot2Hand.get(0).getImage();
+								JLabel cardPanel = new JLabel(card);
+								int x = (int)(Math.random()*50);
+								int y = (int)(Math.random()*30);
+								cardPanel.setBounds(x,y,140,180);
+								centerPanel.add(cardPanel);
+								centerPanel.moveToFront(cardPanel);
+							}
+						});
+						repaint();
+						timer2.setRepeats(false);
+						timer2.start();
+						pile.add(bot2Hand.remove(0));
+					}
+					if(pile.get(pile.length()-1).isFace()) {
+						faceSequence = pile.faceSequence();
+						bot2Turn = false;
+					}
+					else if(faceSequence == 0) {
+						bot2Turn = false;
+					}
+					faceSequence--;
+				}
+			}
+			if(!bot3.equals("None")) {
+				boolean bot3Turn = true;
+				while(bot3Turn) {
+					bot3Diff.getMove(playerTurn);
+					if(!playerTurn) {
+						Timer timer3 = new Timer(3000, new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								ImageIcon card = bot3Hand.get(0).getImage();
+								JLabel cardPanel = new JLabel(card);
+								int x = (int)(Math.random()*50);
+								int y = (int)(Math.random()*30);
+								cardPanel.setBounds(x,y,140,180);
+								centerPanel.add(cardPanel);
+								centerPanel.moveToFront(cardPanel);
+							}
+						});
+						repaint();
+						timer3.setRepeats(false);
+						timer3.start();
+						pile.add(bot3Hand.remove(0));
+					}
+					if(pile.get(pile.length()-1).isFace()) {
+						faceSequence = pile.faceSequence();
+						bot3Turn = false;
+					}
+					else if(faceSequence == 0) {
+						bot3Turn = false;
+					}
+					faceSequence--;
+				}
+			}
+			playerTurn = true;
 		}
-	
+	}
+
 	public void mousePressed(MouseEvent e) {
 		JPanel clickedPanel = null;
 		try {
 			clickedPanel = (JPanel) e.getSource();
 		}
 		catch(Exception e1){
-			
+
 		}
 		JLayeredPane clicked2 = null;
 		try {
 			clicked2 = (JLayeredPane) e.getSource();
 		}
 		catch(Exception e2) {
-			
+
 		}
 		if(clickedPanel == bottomCardPanel) {
-			
+
 			if(playerTurn == true) {
 				System.out.println("clicked");
+
 				ImageIcon card = playerHand.get(0).getImage();
 				JLabel cardPanel = new JLabel(card);
-				cardPanel.setBounds(40,40,140,180);
+				int x = (int)(Math.random()*50);
+				int y = (int)(Math.random()*30);
+				cardPanel.setBounds(x,y,140,180);
 				centerPanel.add(cardPanel);
+				centerPanel.moveToFront(cardPanel);
+
 				repaint();
+
 				pile.add(playerHand.remove(0));
 				slap = pile.isSlap();
 				faceSequence--;
+				if(playerHand.length()==0) {
+					bottomCardPanel.remove(bottomCard);
+					JLabel gameOverText = new JLabel("Game Over!");
+					bottomCardPanel.add(gameOverText);
+					repaint();
+				}
 				if(faceSequence <= 0) {
+					faceSequence = 0;
 					playerTurn = false;
+					try {
+						this.startGame(b1, b2, b3, numPlayer);
+					} catch (InterruptedException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				}
 			}
 		}
@@ -271,7 +334,13 @@ public class GamePanel extends JPanel implements ActionListener,MouseListener{
 				}
 			}
 			else { //burn
-				pile.add(playerHand.remove(0));
+
+				if(playerHand.length()==0) {
+					bottomCardPanel.remove(bottomCard);
+					JLabel gameOverText = new JLabel("Game Over!");
+					bottomCardPanel.add(gameOverText);
+					repaint();
+				}
 			}
 		}
 	}

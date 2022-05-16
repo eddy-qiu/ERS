@@ -199,7 +199,7 @@ public class MenuScreen extends JPanel implements ActionListener{
 			mainFrame.setVisible(true);
 		}
 		else if(eventName.contentEquals("Game")){
-			int numPlayers = 4;
+			int numPlayers = 3;
 			String bot1 = this.getDifficulty(1);
 			String bot2 = this.getDifficulty(2);
 			String bot3 = this.getDifficulty(3);
@@ -215,7 +215,7 @@ public class MenuScreen extends JPanel implements ActionListener{
 			try {
 				mainFrame.setVisible(false);
 				game = new GamePanel(bot1,bot2,bot3,numPlayers);
-				game.startGame(bot1, bot2, bot3, numPlayers);
+				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
