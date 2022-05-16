@@ -11,11 +11,11 @@ public class MenuScreen extends JPanel implements ActionListener{
 	tutorialPanel, tutorialTextPanel, tutorialButtonPanel;
 	JButton start, tutorialButton, ruleButton, nextPage,
 	backToMain, tutorialbackToMain, tutorialnextPage;
-	JLabel titleText, ruleImage, topCard, leftCard, rightCard,
+	JLabel titleText, ruleImage,tutorialImage, topCard, leftCard, rightCard,
 	bottomCard, empty1, empty2, empty3;
 	JComboBox topCardDiff, rightCardDiff, leftCardDiff;
 	ImageIcon Rule1, Rule2, Rule3, Tutorial1, Tutorial2, Tutorial3 ;
-	private int rulePage = 1;
+	private int rulePage = 1, tutorialPage = 1;
 
 	public MenuScreen(){
 		ImageIcon cardBack = new ImageIcon("cards/cardBack.png");
@@ -170,14 +170,23 @@ public class MenuScreen extends JPanel implements ActionListener{
 
 		tutorialnextPage = new JButton("Next");
 		tutorialnextPage.addActionListener(this);
-				
-//		Tutorial1 = new ImageIcon("Rules and Tutorial/RuleImg1.png");
+		
+		Tutorial1 = new ImageIcon("Rules and Tutorial/TutorialImg1.png");
 //		Tutorial2 = new ImageIcon("Rules and Tutorial/RuleImg2.png");
 //		Tutorial3 = new ImageIcon("Rules and Tutorial/RuleImg3.png");
 		
+		Image image4 = Tutorial1.getImage();
+		Image newimg4 = image4.getScaledInstance(720, 360, java.awt.Image.SCALE_SMOOTH);
+		Tutorial1 = new ImageIcon(newimg4);
+		tutorialImage = new JLabel(Tutorial1);
+		
 		tutorialTextPanel = new JPanel();
 		tutorialTextPanel.setLayout(new BoxLayout(tutorialTextPanel, BoxLayout.Y_AXIS));
-		
+		tutorialTextPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+		tutorialTextPanel.setBackground(Color.GREEN);
+		tutorialImage.setAlignmentX(CENTER_ALIGNMENT);
+		tutorialTextPanel.add(tutorialImage);
+		tutorialPanel.add(tutorialTextPanel, BorderLayout.CENTER);
 		
 		tutorialButtonPanel = new JPanel();
 		tutorialButtonPanel.setLayout(new BoxLayout(tutorialButtonPanel, BoxLayout.Y_AXIS));
@@ -188,6 +197,7 @@ public class MenuScreen extends JPanel implements ActionListener{
 		tutorialButtonPanel.add(tutorialbackToMain);
 		tutorialPanel.add(tutorialButtonPanel, BorderLayout.PAGE_END);
 				
+		
 		
 		
 		mainPanel.setBorder(BorderFactory.
@@ -270,6 +280,17 @@ public class MenuScreen extends JPanel implements ActionListener{
 			ruleFrame.setVisible(false);
 			mainFrame.setVisible(false);
 			tutorialFrame.setVisible(true);
+			
+			if(tutorialPage == 0) {
+				tutorialImage.setIcon(Tutorial1);
+				tutorialPage++;
+			}else if(tutorialPage == 1){
+				tutorialImage.setIcon(Tutorial2);
+				tutorialPage++;
+			}else if(tutorialPage == 2) {
+				tutorialImage.setIcon(Tutorial3);
+				tutorialPage = 0;
+			}
 		}
 	}
 	private static void menuGUI() {
