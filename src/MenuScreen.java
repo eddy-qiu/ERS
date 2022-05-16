@@ -150,7 +150,8 @@ public class MenuScreen extends JPanel implements ActionListener{
 		tutorialFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		tutorialPanel = new JPanel();
 		tutorialPanel.setBackground(Color.GREEN);
-		tutorialPanel.setLayout(new GridLayout(2,1,0,0));
+		tutorialPanel.setLayout(new BoxLayout
+				(tutorialPanel, BoxLayout.PAGE_AXIS));
 				
 		tutorialbackToMain = new JButton("Back to menu");
 		tutorialbackToMain.addActionListener(this);
@@ -158,20 +159,20 @@ public class MenuScreen extends JPanel implements ActionListener{
 		tutorialnextPage = new JButton("Next");
 		tutorialnextPage.addActionListener(this);
 		
-		Tutorial1 = new ImageIcon("Rules and Tutorial/TutorialImg1-2.png");
+		Tutorial1 = new ImageIcon("Rules and Tutorial/TutorialImg1.png");
 		Tutorial2 = new ImageIcon("Rules and Tutorial/TutorialImg2.png");
 		Tutorial3 = new ImageIcon("Rules and Tutorial/TutorialImg3.png");
 		Tutorial4 = new ImageIcon("Rules and Tutorial/TutorialImg4.png");
 		Tutorial5 = new ImageIcon("Rules and Tutorial/TutorialImg5.png");
 		
 		Image image4 = Tutorial1.getImage();
-		Image newimg4 = image4.getScaledInstance(720, 360, java.awt.Image.SCALE_SMOOTH);
+		Image newimg4 = image4.getScaledInstance(620, 600, java.awt.Image.SCALE_SMOOTH);
 		Tutorial1 = new ImageIcon(newimg4);
 		tutorialImage = new JLabel(Tutorial1);
 		
 		tutorialTextPanel = new JPanel();
 		tutorialTextPanel.setLayout(new BoxLayout(tutorialTextPanel, BoxLayout.Y_AXIS));
-		tutorialTextPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+		tutorialTextPanel.setBorder(BorderFactory.createEmptyBorder(0, 17, 25, 17));
 		tutorialTextPanel.setBackground(Color.GREEN);
 		tutorialImage.setAlignmentX(CENTER_ALIGNMENT);
 		tutorialTextPanel.add(tutorialImage);
@@ -179,9 +180,10 @@ public class MenuScreen extends JPanel implements ActionListener{
 		
 		tutorialButtonPanel = new JPanel();
 		tutorialButtonPanel.setLayout(new BoxLayout(tutorialButtonPanel, BoxLayout.Y_AXIS));
-		rulebuttonPanel.setBorder(BorderFactory.createEmptyBorder(0, 20, 10, 20));
+		tutorialButtonPanel.setBorder(BorderFactory.createEmptyBorder(0, 20, 20, 20));
 		tutorialbackToMain.setAlignmentX(CENTER_ALIGNMENT);
 		tutorialnextPage.setAlignmentX(CENTER_ALIGNMENT);
+		tutorialButtonPanel.setBackground(Color.GREEN);
 		tutorialButtonPanel.add(tutorialnextPage);
 		tutorialButtonPanel.add(tutorialbackToMain);
 		tutorialPanel.add(tutorialButtonPanel, BorderLayout.PAGE_END);
@@ -190,6 +192,8 @@ public class MenuScreen extends JPanel implements ActionListener{
 				createEmptyBorder(25, 40, 25, 40));
 		rulePanel.setBorder(BorderFactory.
 				createEmptyBorder(0, 0, 0, 0));
+		tutorialPanel.setBorder(BorderFactory.
+				createEmptyBorder(0, 0, 18, 0));
 		mainFrame.setContentPane(mainPanel);
 		mainFrame.pack();
 		mainFrame.setVisible(true);
@@ -200,7 +204,7 @@ public class MenuScreen extends JPanel implements ActionListener{
 		
 		tutorialFrame.setContentPane(tutorialPanel);
 		tutorialFrame.pack();
-		tutorialFrame.setVisible(false);
+		tutorialFrame.setVisible(true);
 		
 	}
 	public String getDifficulty(int card) {
