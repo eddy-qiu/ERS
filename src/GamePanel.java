@@ -8,16 +8,16 @@ import javax.swing.*;
 
 public class GamePanel extends JPanel implements ActionListener,MouseListener{
 	JFrame GameFrame;
-	JPanel mainPanel, rightCardPanel, leftCardPanel, topCardPanel, bottomCardPanel;
+	JPanel mainPanel, topCardPanel, bottomCardPanel;
 	JLayeredPane centerPanel;
-	JLabel topCard, leftCard, rightCard, bottomCard, empty1, empty2, empty3, empty4, topCardAmount,
-	leftCardAmount,rightCardAmount,bottomCardAmount;
+	JLabel topCard, bottomCard, empty1, empty2, empty3, empty4, empty5, empty6,  topCardAmount,
+	bottomCardAmount;
 	Boolean playerTurn=true,slap=false,gameOver=false;
 	CenterPile pile = new CenterPile();
 	PlayerPile players[],playerHand,bot1Hand,bot2Hand,bot3Hand;
 	Player bot1Diff,bot2Diff,bot3Diff;
 	int faceSequence;
-	public GamePanel(String bot1,String bot2,String bot3,int numPlayers) throws Exception{//remember that animations can be separate from some backend functionality
+	public GamePanel(String bot1, int numPlayers) throws Exception{//remember that animations can be separate from some backend functionality
 		System.out.println("here");
 		ImageIcon cardBack = new ImageIcon("cards/cardBack.png");
 		ImageIcon rotatedCardBack = new ImageIcon("cards/cardBackSideways.png");
@@ -28,8 +28,6 @@ public class GamePanel extends JPanel implements ActionListener,MouseListener{
 		cardBack = new ImageIcon(newimg1);
 		rotatedCardBack = new ImageIcon(newimg2);
 		topCard = new JLabel(cardBack);
-		leftCard = new JLabel(rotatedCardBack);
-		rightCard = new JLabel(rotatedCardBack);
 		bottomCard = new JLabel(cardBack);
 		//create gui
 		GameFrame = new JFrame("Egyptian Rat Screw");
@@ -43,27 +41,11 @@ public class GamePanel extends JPanel implements ActionListener,MouseListener{
 		centerPanel = new JLayeredPane();
 		centerPanel.addMouseListener(this);
 
-		rightCardPanel = new JPanel();
-		rightCardPanel.setBackground(Color.GREEN);
-		rightCardPanel.setLayout(new GridLayout(1,1,0,0));
-		rightCardPanel.add(rightCard);
-		if(bot1.equals("None")) {
-			rightCardPanel.setVisible(false);
-		}
-
-		leftCardPanel = new JPanel();
-		leftCardPanel.setBackground(Color.GREEN);
-		leftCardPanel.setLayout(new GridLayout(1,1,0,0));
-		leftCardPanel.add(leftCard);
-		if(bot3.equals("None")) {
-			leftCardPanel.setVisible(false);
-		}
-
 		topCardPanel = new JPanel();
 		topCardPanel.setBackground(Color.GREEN);
 		topCardPanel.setLayout(new GridLayout(1,1,0,0));
 		topCardPanel.add(topCard);
-		if(bot2.equals("None")) {
+		if(bot1.equals("None")) {
 			topCardPanel.setVisible(false);
 		}
 
@@ -77,16 +59,18 @@ public class GamePanel extends JPanel implements ActionListener,MouseListener{
 		empty2 = new JLabel("");
 		empty3 = new JLabel("");
 		empty4 = new JLabel("");
+		empty5 = new JLabel("");
+		empty6 = new JLabel("");
 
 		mainPanel.add(empty1);
 		mainPanel.add(topCardPanel);
 		mainPanel.add(empty2);
-		mainPanel.add(leftCardPanel);
-		mainPanel.add(centerPanel);
-		mainPanel.add(rightCardPanel);
 		mainPanel.add(empty3);
-		mainPanel.add(bottomCardPanel);
+		mainPanel.add(centerPanel);
 		mainPanel.add(empty4);
+		mainPanel.add(empty5);
+		mainPanel.add(bottomCardPanel);
+		mainPanel.add(empty6);
 
 		GameFrame.setContentPane(mainPanel);
 		GameFrame.pack();
@@ -134,14 +118,6 @@ public class GamePanel extends JPanel implements ActionListener,MouseListener{
 			bot1Hand = players[j];
 			j++;
 		}
-		if(!bot2.contentEquals("None") ) {
-			bot2Hand = players[j];
-			j++;
-		}
-		if(!bot3.contentEquals("None") ) {
-			bot3Hand = players[j];
-			j++;
-		}
 		if(bot1.equals("easy")) { //set the difficulty for the bots
 			bot1Diff = new EasyPlayer();
 		}
@@ -151,26 +127,8 @@ public class GamePanel extends JPanel implements ActionListener,MouseListener{
 		else if(bot1.equals("hard")) {
 			bot1Diff = new HardPlayer();
 		}
-		if(bot2.equals("easy")) {
-			bot2Diff = new EasyPlayer();
-		}
-		else if(bot2.equals("medium")) {
-			bot2Diff = new MediumPlayer();
-		}
-		else if(bot2.equals("hard")) {
-			bot2Diff = new HardPlayer();
-		}
-		if(bot3.equals("easy")) {
-			bot3Diff = new EasyPlayer();
-		}
-		else if(bot3.equals("medium")) {
-			bot3Diff = new MediumPlayer();
-		}
-		else if(bot3.equals("hard")) {
-			bot3Diff = new HardPlayer();
-		}
 	}
-	public void startGame(String bot1, String bot2, String bot3, int numPlayers) throws InterruptedException {//start game
+	public void startGame(String bot1, int numPlayers) throws InterruptedException {//start game
 	
 			if(!playerTurn) {
 				if(!bot1.equals("None")) {
@@ -190,40 +148,6 @@ public class GamePanel extends JPanel implements ActionListener,MouseListener{
 						}
 						else if(faceSequence == 0) {
 							bot1Turn = false;
-						}
-						faceSequence--;
-					}
-				}
-				if(!bot2.equals("None")) {
-					boolean bot2Turn = true;
-					while(bot2Turn && faceSequence!=0) {
-						bot2Diff.getMove(playerTurn);
-						if(!playerTurn) {
-							pile.add(bot2Hand.remove(0));
-						}
-						if(pile.get(pile.length()-1).isFace()) {
-							faceSequence = pile.faceSequence();
-							bot2Turn = false;
-						}
-						else if(faceSequence == 0) {
-							bot2Turn = false;
-						}
-						faceSequence--;
-					}
-				}
-				if(!bot3.equals("None")) {
-					boolean bot3Turn = true;
-					while(bot3Turn && faceSequence!=0) {
-						bot3Diff.getMove(playerTurn);
-						if(!playerTurn) {
-							pile.add(bot3Hand.remove(0));
-						}
-						if(pile.get(pile.length()-1).isFace()) {
-							faceSequence = pile.faceSequence();
-							bot3Turn = false;
-						}
-						else if(faceSequence == 0) {
-							bot3Turn = false;
 						}
 						faceSequence--;
 					}

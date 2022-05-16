@@ -7,13 +7,13 @@ public class MenuScreen extends JPanel implements ActionListener{
 	GamePanel game;
 	JPanel mainPanel, titlePanel, rulePanel, 
 	rulebuttonPanel, ruleTextPanel, menuButtonPanel, 
-	rightCardPanel, leftCardPanel, topCardPanel,
+	rightPanel, leftPanel, topCardPanel,
 	tutorialPanel, tutorialTextPanel, tutorialButtonPanel;
 	JButton start, tutorialButton, ruleButton, nextPage,
 	backToMain, tutorialbackToMain, tutorialnextPage;
 	JLabel titleText, ruleImage,tutorialImage, topCard, leftCard, rightCard,
-	bottomCard, empty1, empty2, empty3;
-	JComboBox topCardDiff, rightCardDiff, leftCardDiff;
+	bottomCard, empty1, empty2, empty3, empty4, empty5;
+	JComboBox topCardDiff;
 	ImageIcon Rule1, Rule2, Rule3, Tutorial1, Tutorial2, Tutorial3 ;
 	private int rulePage = 1, tutorialPage = 1;
 
@@ -42,26 +42,12 @@ public class MenuScreen extends JPanel implements ActionListener{
 		};
 
 		topCardDiff = new JComboBox(Difficulty);
-		rightCardDiff = new JComboBox(Difficulty);
-		leftCardDiff = new JComboBox(Difficulty);
 		//Main Panel
 		mainFrame = new JFrame("Egyptian Rat Screw");
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainPanel = new JPanel();
 		mainPanel.setBackground(Color.GREEN);
 		mainPanel.setLayout(new GridLayout(3,3, 50, 25));
-
-		rightCardPanel = new JPanel();
-		rightCardPanel.setLayout(new BoxLayout(rightCardPanel, BoxLayout.Y_AXIS));
-		rightCardPanel.setBackground(Color.GREEN);
-		rightCardPanel.add(rightCard);
-		rightCardPanel.add(rightCardDiff);
-
-		leftCardPanel = new JPanel();
-		leftCardPanel.setLayout(new BoxLayout(leftCardPanel, BoxLayout.Y_AXIS));
-		leftCardPanel.setBackground(Color.GREEN);
-		leftCardPanel.add(leftCard);
-		leftCardPanel.add(leftCardDiff);
 
 		topCardPanel = new JPanel();
 		topCardPanel.setLayout(new BoxLayout(topCardPanel, BoxLayout.Y_AXIS));
@@ -88,9 +74,11 @@ public class MenuScreen extends JPanel implements ActionListener{
 		ruleButton.setAlignmentX(CENTER_ALIGNMENT);
 		ruleButton.setAlignmentY(TOP_ALIGNMENT);
 		ruleButton.addActionListener(this);
-		empty1 = new JLabel(" ");
-		empty2 = new JLabel(" ");
-		empty3 = new JLabel(" ");
+		empty1 = new JLabel("");
+		empty2 = new JLabel("");
+		empty3 = new JLabel("");
+		empty4 = new JLabel("");
+		empty5 = new JLabel("");
 
 		titlePanel = new JPanel();
 		titlePanel.setLayout(new GridLayout(3,1,0,0));
@@ -109,10 +97,10 @@ public class MenuScreen extends JPanel implements ActionListener{
 		mainPanel.add(empty1);
 		mainPanel.add(topCardPanel);
 		mainPanel.add(empty2);
-		mainPanel.add(leftCardPanel);
-		mainPanel.add(titlePanel);
-		mainPanel.add(rightCardPanel);
 		mainPanel.add(empty3);
+		mainPanel.add(titlePanel);
+		mainPanel.add(empty4);
+		mainPanel.add(empty5);
 		mainPanel.add(bottomCard);
 		mainPanel.add(menuButtonPanel);
 
@@ -223,11 +211,7 @@ public class MenuScreen extends JPanel implements ActionListener{
 	public String getDifficulty(int card) {
 		String Difficulty = "None";
 		if(card == 1){
-			Difficulty = (String) rightCardDiff.getSelectedItem();
-		}else if(card == 2) {
 			Difficulty = (String) topCardDiff.getSelectedItem();
-		}else if(card == 3) {
-			Difficulty = (String) leftCardDiff.getSelectedItem();
 		}
 		return Difficulty;
 	}
@@ -256,15 +240,7 @@ public class MenuScreen extends JPanel implements ActionListener{
 		else if(eventName.contentEquals("Game")){
 			int numPlayers = 4;
 			String bot1 = this.getDifficulty(1);
-			String bot2 = this.getDifficulty(2);
-			String bot3 = this.getDifficulty(3);
 			if(bot1.equals("None")) {
-				numPlayers--;
-			}
-			if(bot2.equals("None")) {
-				numPlayers--;
-			}
-			if(bot3.equals("None")) {
 				numPlayers--;
 			}
 			try {
@@ -276,7 +252,8 @@ public class MenuScreen extends JPanel implements ActionListener{
 				e.printStackTrace();
 			}
 			
-		}else if(eventName.equals("Tutorial")) {
+		}
+		else if(eventName.equals("Tutorial")) {
 			ruleFrame.setVisible(false);
 			mainFrame.setVisible(false);
 			tutorialFrame.setVisible(true);
