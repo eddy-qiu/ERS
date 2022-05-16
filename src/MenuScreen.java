@@ -15,7 +15,7 @@ public class MenuScreen extends JPanel implements ActionListener{
 	bottomCard, empty1, empty2, empty3, empty4, empty5;
 	JComboBox topCardDiff;
 	ImageIcon Rule1, Rule2, Rule3, Tutorial1, Tutorial2, Tutorial3, Tutorial4, Tutorial5 ;
-	private int rulePage = 0, tutorialPage = 0;
+	private int rulePage = 1, tutorialPage = 1;
 
 	public MenuScreen(){
 		ImageIcon cardBack = new ImageIcon("cards/cardBack.png");
@@ -162,7 +162,7 @@ public class MenuScreen extends JPanel implements ActionListener{
 		Tutorial1 = new ImageIcon("Rules and Tutorial/TutorialImg1.png");
 		Tutorial2 = new ImageIcon("Rules and Tutorial/TutorialImg2.png");
 		Tutorial3 = new ImageIcon("Rules and Tutorial/TutorialImg3.png");
-		Tutorial4 = new ImageIcon("Rules and Tutorial/TutorialImg4.png");
+		Tutorial4 = new ImageIcon("Rules and Tutorial/TutorialImg4.jpg");
 		Tutorial5 = new ImageIcon("Rules and Tutorial/TutorialImg5.png");
 		
 		Image image4 = Tutorial1.getImage();
@@ -204,7 +204,7 @@ public class MenuScreen extends JPanel implements ActionListener{
 		
 		tutorialFrame.setContentPane(tutorialPanel);
 		tutorialFrame.pack();
-		tutorialFrame.setVisible(true);
+		tutorialFrame.setVisible(false);
 		
 	}
 	public String getDifficulty(int card) {
