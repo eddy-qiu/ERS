@@ -183,9 +183,6 @@ public class MenuScreen extends JPanel implements ActionListener{
 		tutorialButtonPanel.add(tutorialnextPage);
 		tutorialButtonPanel.add(tutorialbackToMain);
 		tutorialPanel.add(tutorialButtonPanel, BorderLayout.PAGE_END);
-				
-		
-		
 		
 		mainPanel.setBorder(BorderFactory.
 				createEmptyBorder(25, 40, 25, 40));
@@ -202,9 +199,6 @@ public class MenuScreen extends JPanel implements ActionListener{
 		tutorialFrame.setContentPane(tutorialPanel);
 		tutorialFrame.pack();
 		tutorialFrame.setVisible(false);
-		
-		
-		
 		
 	}
 	public String getDifficulty(int card) {
