@@ -20,13 +20,19 @@ public class CenterPile extends Deck{
 		if(Cards.size()<2) {
 			return false;
 		}
-		if(Cards.get(Cards.size()-1).getValue() == Cards.get(Cards.size()-2).getValue()) {
+		if(Cards.get(Cards.size()-1).getValue() == 
+				Cards.get(Cards.size()-2).getValue()) {
 			return true;
 		}
-		if(Cards.size() > 2 && Cards.get(Cards.size()-1).getValue() == Cards.get(Cards.size()-3).getValue()) {
+		if(Cards.size() > 2 && Cards.get
+				(Cards.size()-1).getValue() == 
+				Cards.get(Cards.size()-3).getValue()) {
 			return true;
 		}
-		if((Cards.get(Cards.size()-1).getValue() == 12 && Cards.get(Cards.size()-2).getValue() == 13) || (Cards.get(Cards.size()-1).getValue() == 13 && Cards.get(Cards.size()-2).getValue() == 12)) {
+		if((Cards.get(Cards.size()-1).getValue() == 12 && 
+				Cards.get(Cards.size()-2).getValue() == 13) ||
+				(Cards.get(Cards.size()-1).getValue() == 13 && 
+				Cards.get(Cards.size()-2).getValue() == 12)) {
 			return true;
 		}
 		return false;

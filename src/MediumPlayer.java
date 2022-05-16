@@ -1,6 +1,9 @@
 import java.util.concurrent.TimeUnit;
-public class MediumPlayer extends Player{ //general template for computer player, might make the easy player misslap sometimes
-	public String getMove(CenterPile pile, PlayerPile myPile) throws InterruptedException {
+public class MediumPlayer extends Player{
+//	general template for computer player, 
+//	might make the easy player misslap sometimes
+	public String getMove(CenterPile pile, PlayerPile myPile)
+			throws InterruptedException {
 		if(myPile.length() != 0 || myPile.length() > 0) {
 			if(pile.isSlap()) {
 				TimeUnit.MILLISECONDS.sleep(750);
@@ -12,7 +15,8 @@ public class MediumPlayer extends Player{ //general template for computer player
 		}
 		return null;
 	}
-	public String getMove(boolean playerTurn) throws InterruptedException {
+	public String getMove(boolean playerTurn)
+			throws InterruptedException {
 		if(!playerTurn) {
 			TimeUnit.SECONDS.sleep(3/2);
 		}
