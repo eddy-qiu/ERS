@@ -15,7 +15,7 @@ public class GamePanel extends JPanel implements ActionListener,MouseListener{
 	Boolean playerTurn=true,slap=false,gameOver=false;
 	CenterPile pile = new CenterPile();
 	PlayerPile players[],playerHand,bot1Hand,bot2Hand,bot3Hand;
-	Player bot1Diff,bot2Diff,bot3Diff;
+	Player bot1Diff;
 	int faceSequence;
 	public GamePanel(String bot1, int numPlayers) throws Exception{//remember that animations can be separate from some backend functionality
 		System.out.println("here");

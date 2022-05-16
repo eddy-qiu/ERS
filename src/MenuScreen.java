@@ -235,9 +235,13 @@ public class MenuScreen extends JPanel implements ActionListener{
 		}
 		else if(eventName.equals("Back to menu")) {
 			ruleFrame.dispose();
+			tutorialFrame.dispose();
 			mainFrame.setVisible(true);
 		}
 		else if(eventName.contentEquals("Game")){
+			ruleFrame.dispose();
+			tutorialFrame.dispose();
+			mainFrame.dispose();
 			int numPlayers = 4;
 			String bot1 = this.getDifficulty(1);
 			if(bot1.equals("None")) {
@@ -245,8 +249,8 @@ public class MenuScreen extends JPanel implements ActionListener{
 			}
 			try {
 				mainFrame.setVisible(false);
-				game = new GamePanel(bot1,bot2,bot3,numPlayers);
-				game.startGame(bot1, bot2, bot3, numPlayers);
+				game = new GamePanel(bot1,numPlayers);
+				game.startGame(bot1, numPlayers);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
