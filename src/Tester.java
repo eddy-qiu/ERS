@@ -71,16 +71,34 @@ public class Tester {
 		Tester test = new Tester();
 	}
 	public static void main(String[] args) {
-		javax.swing.SwingUtilities.
-		invokeLater(new Runnable() {
-			public void run() {
-				try {
-					menuGUI();
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		});
+//		javax.swing.SwingUtilities.
+//		invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					menuGUI();
+//				} catch (Exception e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+		CenterPile center = new CenterPile();
+		try{
+			System.out.println(center.length());
+			center.add(new Card(11,"Clubs"));
+			System.out.println(center.faceSequence());
+			center.add(new Card(1,"Hearts"));
+			System.out.println(center.faceSequence());
+			center.add(new Card(2,"Clubs"));
+			System.out.println(center.faceSequence());
+			System.out.println(center.length());
+			center.remove(0);
+			System.out.println(center.length());
+		}
+		catch(Exception e) {
+			
+		}
+		System.out.println(center.get(0).getValue());
+		System.out.println(center.faceSequence());
+		}
 	}
-}
