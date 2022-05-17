@@ -20,7 +20,7 @@ public class GamePanel extends JPanel implements ActionListener, MouseListener {
 	String b1;
 	boolean dub = false;
 	boolean playerPlayedFace;
-	int speed;
+	int speed = 1000;
 	Timer timer1 = new Timer();
 	Timer slapTimer = new Timer();
 
