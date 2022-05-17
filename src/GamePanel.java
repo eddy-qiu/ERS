@@ -109,20 +109,20 @@ public class GamePanel extends JPanel implements ActionListener, MouseListener {
 		} else if (bot1.equals("medium")) {
 			speed = 750;
 		} else if (bot1.equals("hard")) {
-			System.out.println("speed");
+
 			speed = 400;
 		}
 	}
 
 	public void computerPlayCard() throws InterruptedException {// start game
-		System.out.println("Dub is currently: " + dub);
+
 		if (!playerTurn) {
 			slap = pile.isSlap();
 			if (bot1Hand.length() == 0 && !slap) {
 				JOptionPane.showMessageDialog(GameFrame, "You Won!");
 			}
 			repaint();
-			System.out.println(faceSequence);
+
 			timer1.schedule(new TimerTask() {
 				public void run() {
 					ImageIcon card = bot1Hand.get(0).getImage();
@@ -133,12 +133,10 @@ public class GamePanel extends JPanel implements ActionListener, MouseListener {
 					centerPanel.add(cardPanel);
 					centerPanel.moveToFront(cardPanel);
 
-					System.out.println(bot1Hand.length());
-
 					topCardPanel.repaint();
 
 					Card c = bot1Hand.remove(0);
-					System.out.println("Computer played a " + c);
+
 					pile.add(c);
 					slap = pile.isSlap();
 					dub = false;
@@ -148,9 +146,9 @@ public class GamePanel extends JPanel implements ActionListener, MouseListener {
 							slapTimer.schedule(new TimerTask() {
 								@Override
 								public void run() {
-									System.out.println("asdhjaskchbsjdkdna");
+
 									if (!dub) {
-										System.out.println("Hi");
+
 										playerPlayedFace = false;
 										playerTurn = false;
 										faceSequence = 0;
@@ -184,7 +182,7 @@ public class GamePanel extends JPanel implements ActionListener, MouseListener {
 
 					if (pile.get(pile.length() - 1).isFace()) {
 						faceSequence = pile.faceSequence();
-						System.out.println("cpu:" + pile.faceSequence());
+
 						playerTurn = true;
 						playerPlayedFace = false;
 					} else if (faceSequence < 0) {
@@ -196,7 +194,7 @@ public class GamePanel extends JPanel implements ActionListener, MouseListener {
 						playerTurn = true;
 					} else if (faceSequence == 0 && !playerPlayedFace) {
 						playerTurn = false;
-						System.out.println("rah hee");
+
 					} else if (faceSequence == 0 && playerPlayedFace) {
 						Timer t = new Timer();
 						t.schedule(new TimerTask() {
@@ -232,8 +230,6 @@ public class GamePanel extends JPanel implements ActionListener, MouseListener {
 	}
 
 	public void mousePressed(MouseEvent e) {
-		System.out.println(playerTurn);
-
 		JPanel clickedPanel = null;
 		try {
 			clickedPanel = (JPanel) e.getSource();
@@ -251,7 +247,6 @@ public class GamePanel extends JPanel implements ActionListener, MouseListener {
 			if (!playerTurn)
 				return;
 			Card c = playerHand.get(0);
-			System.out.println("I played a " + c);
 			ImageIcon card = playerHand.get(0).getImage();
 			JLabel cardPanel = new JLabel(card);
 			slapTimer.cancel();
@@ -276,7 +271,6 @@ public class GamePanel extends JPanel implements ActionListener, MouseListener {
 					slapTimer.schedule(new TimerTask() {
 						@Override
 						public void run() {
-							System.out.println("Not Chole");
 							if (!dub) {
 								playerPlayedFace = false;
 								playerTurn = false;
@@ -296,9 +290,9 @@ public class GamePanel extends JPanel implements ActionListener, MouseListener {
 				}
 			}
 			if (pile.get(pile.length() - 1).isFace()) {
-				System.out.println("Called");
+
 				faceSequence = pile.faceSequence();
-				System.out.println(pile.faceSequence());
+
 				playerPlayedFace = true;
 				playerTurn = false;
 				try {
@@ -311,7 +305,6 @@ public class GamePanel extends JPanel implements ActionListener, MouseListener {
 				timer.schedule(new TimerTask() {
 					@Override
 					public void run() {
-						System.out.println("from here?");
 						centerPanel.removeAll();
 						centerPanel.revalidate();
 						centerPanel.repaint();
@@ -346,10 +339,9 @@ public class GamePanel extends JPanel implements ActionListener, MouseListener {
 				}
 			}
 		} else if (clicked2 == centerPanel) {
-			System.out.println("clicked2");
+
 			slap = pile.isSlap();
 			if (slap) {
-				System.out.println("slapped");
 				for (int i = 0; i < pile.length(); i++) {
 					playerHand.add(pile.remove(0));
 				}
@@ -367,7 +359,6 @@ public class GamePanel extends JPanel implements ActionListener, MouseListener {
 				slapTimer.cancel();
 				return;
 			} else { // burn
-				System.out.println("burned");
 				pile.addToBack(playerHand.remove(0));
 				if (playerHand.length() == 0) {
 					bottomCardPanel.remove(bottomCard);
