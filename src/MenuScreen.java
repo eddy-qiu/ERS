@@ -230,14 +230,8 @@ public class MenuScreen extends JPanel implements ActionListener {
 			} else if (tutorialPage == 2) {
 				tutorialImage.setIcon(Tutorial3);
 				tutorialPage++;
-			} else if (tutorialPage == 3) {
-				tutorialImage.setIcon(Tutorial4);
-				tutorialPage++;
-			} else if (tutorialPage == 4) {
-				tutorialImage.setIcon(Tutorial5);
-				tutorialPage++;
 				tutorialPage = 0;
-			}
+			}	
 		} else if (eventName.equals("Back to menu")) {
 			ruleFrame.dispose();
 			tutorialFrame.dispose();
@@ -264,10 +258,6 @@ public class MenuScreen extends JPanel implements ActionListener {
 			ruleFrame.setVisible(false);
 			mainFrame.setVisible(false);
 			tutorialFrame.setVisible(true);
-//			if(eventName.contentEquals("Next")) {
-//				
-//			}
-
 		}
 	}
 
