@@ -20,6 +20,9 @@ public class Card {
 			face = true;
 		}
 	}
+	public String toString() {
+		return cardSuite + " " + value;
+	}
 	public int getValue() {
 		return value;
 	}

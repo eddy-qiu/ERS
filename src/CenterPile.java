@@ -16,6 +16,9 @@ public class CenterPile extends Deck{
 	public Card remove(int index) {
 		return Cards.remove(index);
 	}
+	public void clear() {
+		Cards.clear();
+	}
 	public boolean isSlap() {
 		if(Cards.size()<2) {
 			return false;
