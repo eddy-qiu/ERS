@@ -252,7 +252,6 @@ public class GamePanel extends JPanel implements ActionListener, MouseListener {
 		if (clickedPanel == bottomCardPanel) {
 			if (!playerTurn)
 				return;
-			Card c = playerHand.get(0);
 			ImageIcon card = playerHand.get(0).getImage();
 			JLabel cardPanel = new JLabel(card);
 			int x = (int) (Math.random() * 50);
@@ -358,11 +357,9 @@ public class GamePanel extends JPanel implements ActionListener, MouseListener {
 				return;
 			} else { // burn
 				pile.addToBack(playerHand.remove(0));
-				if (playerHand.length() == 0) {
-					bottomCardPanel.remove(bottomCard);
-					JLabel gameOverText = new JLabel("Game Over!");
-					bottomCardPanel.add(gameOverText);
-					repaint();
+				if (playerHand.length() == 0 && !slap) {
+					JOptionPane.showMessageDialog(GameFrame, "Game Over!");
+					return;
 				}
 			}
 		}
